@@ -7,14 +7,34 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-// �⵵�� ��������
-public class MovieManager {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+@Component
+public class MovieManager {
+    @Autowired
+    private MovieDAO dao;
+    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MovieManager m=new MovieManager();
-		m.naverYearLinkData();
-	     m.naverMovieAllData();
+		ApplicationContext app = new ClassPathXmlApplicationContext("application-*.xml");
+		
+		MovieManager m=(MovieManager)app.getBean("movieManager");
+		
+		List<MovieVO> list= m.naverMovieAllData();
+	   int i=0;
+	     for(MovieVO vo:list)
+	     {
+	    	  m.dao.MovieInsert(vo);
+	    	  System.out.println("i="+i);
+	    	  i++;
+	     }
+	     System.out.println("end...");		
+	  //   MovieManager m = new MovieManager();	
+	 // 	m.naverYearLinkData();
+	  //   m.naverMovieAllData();
 		
 	}
 	
@@ -23,8 +43,8 @@ public class MovieManager {
 		ArrayList<MovieVO> list=new ArrayList<MovieVO>();
 		try{
 		int k=1;
-			for(int i=1;i<=53;i++){
-				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/browsing/bmovie.nhn?open=2017&page="+i).get();
+			for(int i=1;i<=35;i++){
+				Document doc=Jsoup.connect("https://movie.naver.com/movie/sdb/browsing/bmovie.nhn?open=2018&page="+i).get();
 				Elements elem=doc.select("ul.directory_list a[href*=movie]");
 					
 				for(int j=0;j<elem.size();j++){
@@ -65,10 +85,41 @@ public class MovieManager {
 	               Element poster=doc.select("div.poster img").get(0);
 	               Elements story1=doc.select("div.story_area h5");
 	               Elements story2=doc.select("div.story_area p");
-	               Element actorImage=doc.select("div.obj_section li a img").get(0);
-	              // Element photo=doc.select("div.viewer div.viewer_img img").get(0);
+	               Elements actorImage=doc.select("div.obj_section li a img[src*=search.pstatic.net]");
 	              
-	              
+	             /*
+	              *  private int rank;
+					   private String title;
+					   private String link;
+					   private String genre;
+					   private String director;
+					   private String actor;
+					   private String grade;
+					   private String regdate;
+					   private String poster;
+					   private String story;
+					   private String actorImage;
+					   private String country;
+	              * 
+	              */
+	               MovieVO vo=new MovieVO();
+	    			 vo.setMno(i);
+	    			 vo.setTitle(title.text());
+	    			 vo.setPoster(poster.attr("src"));
+	    			 vo.setDirector(director.text());
+	    			 vo.setActor(actor.text());
+	    			 vo.setGenre(genre.text());
+	    			 vo.setGrade(grade.text());
+	    			 vo.setRegdate(regdate.text());
+	    			 vo.setStory(story1.text());
+	    			 vo.setStory(story2.text());
+	    			 vo.setActorImage(actorImage.attr("src"));
+	    			 vo.setLink(links.get(j).getLink().substring(links.get(j).getLink().lastIndexOf("=")+1));
+	    			 
+	    			// vo.setCode(Integer.parseInt(str));
+	    			 list.add(vo);
+	    		
+	                 System.out.println("링크"+links.get(j).getLink().substring(links.get(j).getLink().lastIndexOf("=")+1));  
 	               System.out.println("===========================");
 	               System.out.println("No)"+(i+1));
 	               System.out.println("제목:"+title.text());
@@ -83,9 +134,11 @@ public class MovieManager {
 	               System.out.println("포스터:"+poster.attr("src"));
 	               System.out.println("줄거리:"+story1.text()+" "+story2.text());
 	               System.out.println("배우이미지:"+actorImage.attr("src"));
-	              // System.out.println("����:"+photo.attr("src"));
+	              // System.out.println("코드"+Integer.parseInt(str));
 	               System.out.println("===========================");
-	               i++; 
+	               i++;
+	               
+	                 
 
 		}catch(Exception ex)
 		{

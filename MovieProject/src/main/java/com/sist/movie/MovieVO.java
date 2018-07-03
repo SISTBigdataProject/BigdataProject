@@ -13,9 +13,17 @@ public class MovieVO {
    private String story;
    private String actorImage;
    private String country;
+   private int code;
    
    
-   public String getCountry() {
+ 
+public int getCode() {
+	return code;
+}
+public void setCode(int code) {
+	this.code = code;
+}
+public String getCountry() {
       return country;
    }
    public void setCountry(String country) {
