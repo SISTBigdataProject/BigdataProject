@@ -24,13 +24,13 @@ public class MovieManager {
 		MovieManager m=(MovieManager)app.getBean("movieManager");
 		
 		List<MovieVO> list= m.naverMovieAllData();
-	   int i=0;
+	 /*  int i=0;
 	     for(MovieVO vo:list)
 	     {
 	    	  m.dao.MovieInsert(vo);
 	    	  System.out.println("i="+i);
 	    	  i++;
-	     }
+	     }*/
 	     System.out.println("end...");		
 	  //   MovieManager m = new MovieManager();	
 	 // 	m.naverYearLinkData();

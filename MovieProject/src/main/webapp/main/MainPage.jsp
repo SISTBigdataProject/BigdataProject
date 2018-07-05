@@ -43,10 +43,11 @@
 							<li><a href="#">Extras</a></li>
 							<li><a href="#">Media</a></li>
 						</ul></li>
-				</ul>					
+				</ul>
+								
 					<div id="wrap">
-						  <form action="" autocomplete="on">
-						  <input id="search" name="search" type="text" placeholder="What're we looking for?">
+						  <form action="movie_list.do" autocomplete="on">
+						  <input id="search" name="search" type="text" placeholder="찾고 싶은 영화?" required>
 						  <input id="search_submit" value="Rechercher" type="submit">
 						  </form>
 					</div>
