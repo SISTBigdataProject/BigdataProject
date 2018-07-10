@@ -3,7 +3,15 @@ package com.sist.news;
 public class MovieNewsVO {
 	private String newstit;
 	private String newsimg;
+	private String cont;
 	private String newslink;
+	
+	public String getCont() {
+		return cont;
+	}
+	public void setCont(String cont) {
+		this.cont = cont;
+	}
 	public String getNewstit() {
 		return newstit;
 	}

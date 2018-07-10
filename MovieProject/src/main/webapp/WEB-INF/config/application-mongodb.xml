@@ -6,11 +6,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd">
+		
 	<mongo:mongo-client
-      host="211.238.142.60"
+      host="211.238.142.53"
       port="27017"
       id="mc"
    />
+   
    <bean id="mt"
        class="org.springframework.data.mongodb.core.MongoTemplate">
          <constructor-arg ref="mc"/>

@@ -20,7 +20,7 @@
     <tr bgcolor="gray">
       <th width=10%>번호</th>
       <th width=30%></th>
-      <th width=25%>영화명</th>
+      <th width=25%>영화명</th> 
       <th width=35%>배우</th>
     </tr>
     <c:forEach var="vo" items="${list }">
@@ -37,12 +37,5 @@
   		
 </body>
 </html>
-
-
-
-
-
-
-
 
 

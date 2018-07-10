@@ -38,7 +38,6 @@ public class MovieManager {
 		
 	}
 	
-
 	public ArrayList<MovieVO> naverYearLinkData(){
 		ArrayList<MovieVO> list=new ArrayList<MovieVO>();
 		try{
@@ -54,15 +53,11 @@ public class MovieManager {
 	    			System.out.println(k+"."+"https://movie.naver.com"+elem.get(j).attr("href"));
 	    			k++;
 					}
-			}
-	
+			}	
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
-		
 		return list;
-		
-		
 	}
 	
 	public ArrayList<MovieVO> naverMovieAllData()
@@ -138,8 +133,6 @@ public class MovieManager {
 	               System.out.println("===========================");
 	               i++;
 	               
-	                 
-
 		}catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());

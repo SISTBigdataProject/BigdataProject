@@ -14,7 +14,7 @@ public class MovieNews {
 		mn.coldata();
 	}
 	
-	public List<MovieNewsVO> coldata(){
+	public static List<MovieNewsVO> coldata(){
 		List<MovieNewsVO> list=new ArrayList<MovieNewsVO>();
 		try
 		{
@@ -23,26 +23,30 @@ public class MovieNews {
 			Document doc=Jsoup.connect(url).get();
 			Elements title=doc.select("span.tit");
 			Elements image=doc.select("span.thumb img");
+			Elements cont=doc.select("span.nothumb");
 			Elements link=doc.select("ul.news li a");
-			for(int i=0;i<5;i++)
+			for(int i=0;i<8;i++)
 			{
 				MovieNewsVO vo=new MovieNewsVO();
-				String newstit=title.get(i).text();
-				String newsimg=image.get(i).attr("src");
-				String newslink=link.get(i).attr("href");
-				newslink="http://www.cine21.com"+newslink;
-				vo.setNewstit(newstit);
-				vo.setNewsimg(newsimg);
-				vo.setNewslink(newslink);
+				String cineCont=cont.get(i).text().substring(0,60)+"...";
+						
+				vo.setNewstit(title.get(i).text());
+				vo.setNewsimg(image.get(i).attr("src"));
+				vo.setCont(cineCont);
+				vo.setNewslink("http://www.cine21.com"+link.get(i).attr("href"));
+				
 				list.add(vo);
-				System.out.println(i+". "+newstit+":"+newsimg+"\n"+newslink);
+				System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
+						+"\n"+"http://www.cine21.com"+link.get(i).attr("href")
+						+"\n"+cineCont
+						);
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return list;
 	}
-	public List<MovieNewsVO> newsdata(){
+	public static List<MovieNewsVO> newsdata(){
 		List<MovieNewsVO> list=new ArrayList<MovieNewsVO>();
 		try
 		{
@@ -51,18 +55,21 @@ public class MovieNews {
 			Document doc=Jsoup.connect(url).get();
 			Elements title=doc.select("h2.entry-title");
 			Elements image=doc.select("div.post-image img");
+			Elements cont=doc.select("div.entry-summary p");
 			Elements link=doc.select("h2.entry-title a");
-			for(int i=0;i<5;i++)
+			for(int i=0;i<8;i++)
 			{
 				MovieNewsVO vo=new MovieNewsVO();
-				String newstit=title.get(i).text();
-				String newsimg=image.get(i).attr("src");
-				String newslink=link.get(i).attr("href");
-				vo.setNewstit(newstit);
-				vo.setNewsimg(newsimg);
-				vo.setNewslink(newslink);
+			
+				vo.setNewstit(title.get(i).text());
+				vo.setNewsimg(image.get(i).attr("src"));
+				vo.setCont(cont.get(i).text());
+				vo.setNewslink(link.get(i).attr("href"));
+				
 				list.add(vo);
-				System.out.println(i+". "+newstit+":"+newsimg+"\n"+newslink);
+				System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
+						+"\n"+link.get(i).attr("href")
+						+"\n"+cont.get(i).text());
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

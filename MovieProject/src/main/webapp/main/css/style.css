@@ -10,7 +10,7 @@ body {
 }
 h3, h4 {
 	margin: 10px 0 30px 0;
-	letter-spacing: 10px;
+	letter-spacing: 5px;
 	font-size: 20px;
 }
 
@@ -58,7 +58,7 @@ h3, h4 {
 }
 
 .bg-1 p {
-	font-style: italic;
+/* 	font-style: italic; */
 }
 
 .list-group-item:first-child {
@@ -1021,3 +1021,44 @@ a[data-tooltip][data-placement="top"]::after {
   margin-bottom: 4px;
 }
 
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.card img{
+	height: 190px;
+	    object-fit: cover;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.cardcontainer {
+    padding: 2px 16px;
+    height: 185px;
+}
+
+.badge {
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+.card a{
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+	text-decoration: none;
+}
+
+.card #title
+{
+	height: 50px;
+	
+}
