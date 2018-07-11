@@ -36,10 +36,11 @@ public class MovieNews {
 				vo.setNewslink("http://www.cine21.com"+link.get(i).attr("href"));
 				
 				list.add(vo);
-				System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
+			/*	System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
 						+"\n"+"http://www.cine21.com"+link.get(i).attr("href")
 						+"\n"+cineCont
-						);
+						);*/
+				System.out.println();
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

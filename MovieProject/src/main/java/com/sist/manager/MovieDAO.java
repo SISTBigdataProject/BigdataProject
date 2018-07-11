@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class MovieDAO {
 	@Autowired
@@ -20,7 +19,6 @@ public class MovieDAO {
 	public void MovieInsert(MovieVO vo)
 	{
 		if(!(vo.getGenre().contains("에로")))
-		mt.insert(vo,"moviedetail");
-	  
+		mt.insert(vo,"moviedetail");	  
 	}
 }
