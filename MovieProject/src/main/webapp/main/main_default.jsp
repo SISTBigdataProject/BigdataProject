@@ -248,24 +248,13 @@
 	<!-- 장르별  -->
 	<div class="container">
 		<div class="row">
-			<!-- <div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-				<button class="btn" data-toggle="modal" data-target="#myModal">기사 보기</button>
-			</div>	
-		<div style="height:50px;"></div>-->
-		
 			<div class="col-sm-3">
 				<div>
-				<h2>예매율 1위 51.8%</h2>
-				<a data-toggle="modal" data-target="#myModal"><img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-				<h3>평점 8.75</h3>
-				</div>
-				<div>
 				 <ul class="list-group list-group-flush">
-				  <li class="list-group-item"><strong>개요</strong><br/>액션, 모험, SF 미국 118분 2018 .07.04 개봉 </li>
-				  <li class="list-group-item"><strong>감독</strong></li>
-				  <li class="list-group-item"><strong>출연</strong></li>
-				  <li class="list-group-item"><strong>등급</strong></li>
+				 <li class="list-group-item"> <h2>1위</h2>(예매율: 51.8%)
+				<img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></li>
+				 <li class="list-group-item"><strong>앤트맨과 와스프</strong><br/>	
+				  평점 8.75 | 2018 .07.04 개봉</li>				
 				</ul> 
 				</div>
 			</div>

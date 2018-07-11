@@ -14,7 +14,7 @@ public class MovieVO {
    private String country;
    private String code;
    private String link;
-   private String eval;
+   private double eval;
    private String photo;
    
 public String getDirectorImage() {
@@ -29,10 +29,10 @@ public String getPhoto() {
 public void setPhoto(String photo) {
 	this.photo = photo;
 }
-public String getEval() {
+public double getEval() {
 	return eval;
 }
-public void setEval(String eval) {
+public void setEval(double eval) {
 	this.eval = eval;
 }
 public String getLink() {
