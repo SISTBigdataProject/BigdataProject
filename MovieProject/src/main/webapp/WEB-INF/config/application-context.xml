@@ -3,18 +3,31 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	    <context:annotation-config/>
-       <context:component-scan base-package="com.sist.*"/>
-       <bean id="viewResolver"
-           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-           p:prefix="/"
-           p:suffix=".jsp"
-        />
-
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+   <context:annotation-config/><!-- DI -->
+   <context:component-scan base-package="com.sist.*"/>
+    <!-- 메모리 할당  -->
+   <bean id="viewResolver"
+       class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+       p:prefix="/"
+       p:suffix=".jsp"
+    />
+   <mongo:mongo-client
+       host="211.238.142.53"
+       port="27017"
+       id="mc"
+    />
+    <bean id="mt" class="org.springframework.data.mongodb.core.MongoTemplate">
+       <constructor-arg ref="mc"/>
+       <constructor-arg name="databaseName" value="mydb"/>
+    </bean>
+    <task:annotation-driven/>
 </beans>
+

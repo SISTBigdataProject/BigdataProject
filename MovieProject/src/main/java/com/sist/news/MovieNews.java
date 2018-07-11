@@ -6,13 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 public class MovieNews {
-
-	public static void main(String[] args) {
-		MovieNews mn=new MovieNews();
-		mn.newsdata();
-		System.out.println("=================================================");
-		mn.coldata();
-	}
 	
 	public static List<MovieNewsVO> coldata(){
 		List<MovieNewsVO> list=new ArrayList<MovieNewsVO>();
@@ -33,13 +26,9 @@ public class MovieNews {
 				vo.setNewstit(title.get(i).text());
 				vo.setNewsimg(image.get(i).attr("src"));
 				vo.setCont(cineCont);
-				vo.setNewslink("http://www.cine21.com"+link.get(i).attr("href"));
-				
+				vo.setNewslink("http://www.cine21.com"+link.get(i).attr("href"));				
 				list.add(vo);
-			/*	System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
-						+"\n"+"http://www.cine21.com"+link.get(i).attr("href")
-						+"\n"+cineCont
-						);*/
+		
 				System.out.println();
 			}
 		}catch (Exception e) {
@@ -68,9 +57,7 @@ public class MovieNews {
 				vo.setNewslink(link.get(i).attr("href"));
 				
 				list.add(vo);
-				System.out.println(i+". "+title.get(i).text()+"\n"+image.get(i).attr("src")
-						+"\n"+link.get(i).attr("href")
-						+"\n"+cont.get(i).text());
+				
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());

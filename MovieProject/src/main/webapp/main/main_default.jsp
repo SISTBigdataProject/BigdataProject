@@ -248,47 +248,27 @@
 	<!-- 장르별  -->
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-2">
+			<!-- <div class="col-sm-2">
 				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-				<!-- <button class="btn" data-toggle="modal" data-target="#myModal">기사 보기</button> -->
+				<button class="btn" data-toggle="modal" data-target="#myModal">기사 보기</button>
+			</div>	
+		<div style="height:50px;"></div>-->
+		
+		<div class="col-sm-2">
+			<div>
+			<h2>예매율 1위 51.8%</h2>
+			<a data-toggle="modal" data-target="#myModal"><img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
+			<h3>평점 8.75</h3>
 			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
+			<div>
+			 <ul class="list-group list-group-flush">
+			  <li class="list-group-item"><em>개요</em></li>
+			  <li class="list-group-item"><em>감독</em></li>
+			  <li class="list-group-item"><em>출연</em></li>
+			  <li class="list-group-item"><em>등급</em></li>
+			</ul> 
 			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-		</div>	
-		<div style="height:50px;"></div>
-		<div class="row">
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-			<div class="col-sm-2">
-				<a data-toggle="modal" data-target="#myModal"><img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			</div>
-		</div>		
+		</div>
 	</div>
 	
 	<!-- 영화 뉴스 / 칼럼 -->
@@ -354,7 +334,7 @@
 								<div class="moviecontainer">
 									<a href="#">
 									<img src="../img/movie_image.jpg" alt="cover" class="cover"/></a>
-									<div class="hero">
+									<div class="hero" style="background: url(https://movie-phinf.pstatic.net/20180601_297/15278193380668Anie_JPEG/movie_image.jpg) 0 0 no-repeat;">
 										<div class="details">						
 											<div class="title1">스탠바이, 웬디<span>[국내] 12세 관람가</span>
 											</div>
@@ -431,8 +411,7 @@
 					</div>	
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger btn-default pull-left"
-						data-dismiss="modal">
+					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove"></span> Cancel
 					</button>
 					<p>
@@ -445,46 +424,18 @@
 
 	<!-- 개봉작 정보 -->
 	<div id="contact" class="container-fluid bg-3 text-center">
-		<div class="row no-gutter">
+	
+<%-- 	flist
+		<c:forEach var="vo" items="${nlist }" begin="0" end="7" varStatus="status">			
+			<c:if test="${status.index%4 eq '0' }"><div class="row"></c:if> --%>
+			
+	<c:forEach var="vo" items="${flist}" begin="0" end="11"	varStatus="status">
+		<c:if test="${status.index%6 eq '0' }"><div class="row no-gutter"></c:if>
 			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
+				<img src="${vo.poster }" class="img-responsive" style="width: 100%" alt="Image">
 			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-				<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-				<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-		</div>
-		<div class="row no-gutter">
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-				<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-				<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-			<div class="col-sm-2">
-				<img src="../img/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-		</div>
+		<c:if test="${status.index%4 eq '5'}"></div></c:if>
+	</c:forEach>
 	</div>
 <script>
 		$(document).ready(function(){

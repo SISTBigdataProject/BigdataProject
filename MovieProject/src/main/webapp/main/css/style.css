@@ -802,7 +802,7 @@ a:hover {
   top: 0;
   left: 0;
   background: red;
-  background: url(https://movie-phinf.pstatic.net/20180430_142/1525049443019hJ2Lr_JPEG/movie_image.jpg?type=m427_320_2) 0 0 no-repeat;
+ /*  background: url(https://movie-phinf.pstatic.net/20180430_142/1525049443019hJ2Lr_JPEG/movie_image.jpg?type=m427_320_2) 0 0 no-repeat; */
   filter: blur(1px);
   background-size: 100%;
   z-index: -1;

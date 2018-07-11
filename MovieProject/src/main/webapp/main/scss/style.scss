@@ -1,410 +1,287 @@
-*, *:before, *:after {
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+// Variables
+$regal-blue: #034378;
+$san-juan: #2d4e68;
+$bermuda: #77d7b9;
+$white: #fff;
+$black: #000;
+$open-sans: "Open Sans", sans-serif;
+// clear-fix mixin
+@mixin cf {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  background: #1f1f1f;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-}
-
-$vertPad: 80px;
-$sidePad: 70px;
-
-$numOfEls: 5;
-$elMrg: 1%;
-
-$initAT: 1s;
-$initDelayStep: 0.1s;
-$fullInitAT: $initAT + $initDelayStep * ($numOfEls - 1);
-$moveAT: 0.6s;
-$expandAT: 0.7s;
-$expandDelay: 0.1s;
-$bgScaleAT: 0.8s;
-$fadeoutAT: $moveAT + $expandAT/2;
-$indexHoverAT: 0.5s;
-$closeBtnAT: 0.3s;
-$closeBtnLineDelay: 0.15s;
-$fullExpandAT: $moveAT + $expandDelay + $expandAT;
-$contentFadeinAT: 0.5s;
-
-@mixin elHover {
-  .el:hover & {
-    @content;
-  }
-}
-
-@mixin elActive {
-  .el.s--active & {
-    @content;
-  }
-}
-
-@mixin contInactive {
-  .cont.s--inactive & {
-    @content;
-  }
-}
-
-@mixin contElActive {
-  .cont.s--el-active & {
-    @content;
-  }
-}
-
-.cont {
-  position: relative;
-  overflow: hidden;
+  background-image: linear-gradient(to right, $regal-blue, $san-juan);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  padding: $vertPad $sidePad;
-
-  &__inner {
-    position: relative;
-    height: 100%;
-    
-    &:hover .el__bg:after {
-      opacity: 1;
-    }
-  }
+  font-family: $open-sans;
 }
 
-.el {
-  $elW: (100% - $elMrg * ($numOfEls - 1)) / $numOfEls;
-  $elMrgRel: percentage($elMrg / $elW);
-  
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: $elW;
-  height: 100%;
-  background: #252525;
-  transition: transform $moveAT $expandAT, width $expandAT, opacity $moveAT $expandAT, z-index 0s $moveAT + $expandAT;
-  will-change: transform, width, opacity;
+a {
+  text-decoration: none;
+}
 
-  &:not(.s--active) {
-    cursor: pointer;
-  }
-  
-  &__overflow {
-    overflow: hidden;
-    position: relative;
-    height: 100%;
-  }
+h1 {
+  font-family: $open-sans;
+  font-weight: 300;
+}
 
-  &__inner {
-    overflow: hidden;
-    position: relative;
-    height: 100%;
-    transition: transform $initAT;
+.row {
+  max-width: 900px;
+  margin: 50px auto 0;
+}
 
-    @include contInactive {
-      transform: translate3d(0,100%,0);
+// Base styles
+.card {
+  float: left;
+  padding: 0 1.7rem;
+  width: 50%;
+  .menu-content {
+    @include cf;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      display: inline-block;
     }
-  }
-
-  &__bg {
-    position: relative;
-    width: calc(100vw - #{$sidePad * 2});
-    height: 100%;
-    transition: transform $moveAT $expandAT;
-    will-change: transform;
-
-    &:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: -5%;
-      width: 100%;
-      height: 110%;
-      background-size: cover;
-      background-position: center center;
-      transition: transform $initAT;
-      transform: translate3d(0,0,0) scale(1);
-
-      @include contInactive {
-        transform: translate3d(0,-100%,0) scale(1.2);
-      }
-
-      @include elActive {
-        transition: transform $bgScaleAT;
-      }
+    a {
+      color: $white;
     }
-    
-    &:after {
-      $opacityAT: 0.5s;
-      
-      content: "";
-      z-index: 1;
+    span {
       position: absolute;
-      left: 0;
+      left: 50%;
       top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3);
-      opacity: 0;
-      transition: opacity $opacityAT;
-      
-      @include contElActive {
-        transition: opacity $opacityAT $fullExpandAT;
-        opacity: 1 !important;
-      }
+      font-size: 10px;
+      font-weight: 700;
+      font-family: "Open Sans";
+      transform: translate(-50%, 0);
     }
   }
-  
-  &__preview-cont {
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    transition: all 0.3s $fullInitAT - 0.2s;
-    
-    @include contInactive {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    
-    @include contElActive {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s;
-    }
-  }
-  
-  &__heading {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 18px;
-  }
-  
-  &__content {
-    z-index: -1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding: 30px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.1s;
-    
-    @include elActive {
-      z-index: 2;
-      opacity: 1;
-      pointer-events: auto;
-      transition: all $contentFadeinAT $fullExpandAT;
-    }
-  }
-  
-  &__text {
-    text-transform: uppercase;
-    font-size: 40px;
-    color: #fff;
-  }
-  
-  &__close-btn {
-    
-    z-index: -1;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 60px;
-    height: 60px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0s $closeBtnAT + $closeBtnLineDelay;
-    cursor: pointer;
-    
-    @include elActive {
-      z-index: 5;
-      opacity: 1;
-      pointer-events: auto;
-      transition: all 0s $fullExpandAT;
-    }
-    
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 8px;
-      margin-top: -4px;
-      background: #fff;
-      opacity: 0;
-      transition: opacity 0s;
-      
-      @include elActive {
-        opacity: 1;
-      }
-    }
-    
-    &:before {
-      transform: rotate(45deg) translateX(100%);
-      
-      @include elActive {
-        transition: all $closeBtnAT $fullExpandAT cubic-bezier(.72,.09,.32,1.57);
-        transform: rotate(45deg) translateX(0);
-      }
-    }
-    
-    &:after {
-      transform: rotate(-45deg) translateX(100%);
-      
-      @include elActive {
-        transition: all $closeBtnAT $fullExpandAT + $closeBtnLineDelay cubic-bezier(.72,.09,.32,1.57);
-        transform: rotate(-45deg) translateX(0);
-      }
-    }
-  }
-  
-  &__index {
+  .wrapper {
+    background-color: $white;
+    min-height: 540px;
+    position: relative;
     overflow: hidden;
+    box-shadow: 0 19px 38px rgba($black, 0.3), 0 15px 12px rgba($black, 0.2);
+    &:hover {
+      .data {
+        transform: translateY(0);
+      }
+    }
+  }
+  .data {
     position: absolute;
-    left: 0;
-    bottom: $vertPad * -1;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    min-height: 250px;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+    .content {
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .author {
+    font-size: 12px;
+  }
+  .title {
+    margin-top: 10px;
+  }
+  .text {
+    height: 70px;
+    margin: 0;
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"]:checked + .menu-content {
+    transform: translateY(-60px);
+  }
+}
+
+// First example styles
+.example-1 {
+  .wrapper {
+    background: url(https://images.unsplash.com/photo-1496979551903-46e46589a88b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=cda12b505afa1beb06e49d89014cbd65&auto=format&fit=crop&w=634&q=80)
+      20% 1% / cover no-repeat;
+  }
+  .date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $bermuda;
+    color: $white;
+    padding: 0.8em;
+    span {
+      display: block;
+      text-align: center;
+    }
+    .day {
+      font-weight: 700;
+      font-size: 24px;
+      text-shadow: 2px 3px 2px rgba($black, 0.18);
+    }
+    .month {
+      text-transform: uppercase;
+    }
+    .month,
+    .year {
+      font-size: 12px;
+    }
+  }
+  .content {
+    background-color: $white;
+    box-shadow: 0 5px 30px 10px rgba($black, 0.3);
+  }
+  .title {
+    a {
+      color: lighten($black, 50%);
+    }
+  }
+  .menu-button {
+    position: absolute;
+    z-index: 999;
+    top: 16px;
+    right: 16px;
+    width: 25px;
     text-align: center;
-    font-size: 100vw / $numOfEls;
-    line-height: 0.85;
-    font-weight: bold;
-    transition: transform $indexHoverAT, opacity $moveAT/2 $expandAT + $expandDelay + $moveAT;
-    transform: translate3d(0,1vw,0);
-    
-    @include elHover {
-      transform: translate3d(0,0,0);
+    cursor: pointer;
+    span {
+      width: 5px;
+      height: 5px;
+      background-color: lighten($black, 50%);
+      color: lighten($black, 50%);
+      position: relative;
+      display: inline-block;
+      border-radius: 50%;
+      &::after,
+      &::before {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 5px;
+        background-color: currentColor;
+        position: absolute;
+        border-radius: 50%;
+      }
+      &::before {
+        left: -10px;
+      }
+      &::after {
+        right: -10px;
+      }
     }
-    
-    @include contElActive {
-      transition: transform $indexHoverAT, opacity $moveAT/2;
-      opacity: 0;
+  }
+  .menu-content {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    transition: transform 0.3s;
+    transform: translateY(0);
+    li {
+      width: 33.333333%;
+      float: left;
+      background-color: $bermuda;
+      height: 60px;
+      position: relative;
     }
-    
-    &-back,
-    &-front {
+    a {
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
     }
-   
-    &-back {
-      color: #2f3840;
+    span {
+      top: -10px;
+    }
+  }
+}
+
+// Second example styles
+.example-2 {
+  .wrapper {
+    background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg)
+      center / cover no-repeat;
+    &:hover {
+      .menu-content {
+        span {
+          transform: translate(-50%, -10px);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .header {
+    @include cf;
+    color: $white;
+    padding: 1em;
+    .date {
+      float: left;
+      font-size: 12px;
+    }
+  }
+  .menu-content {
+    float: right;
+    li {
+      margin: 0 5px;
+      position: relative;
+    }
+    span {
+      transition: all 0.3s;
       opacity: 0;
-      transition: opacity $indexHoverAT/2 $indexHoverAT/2;
-      
-      @include elHover {
-        transition: opacity $indexHoverAT/2;
+    }
+  }
+  .data {
+    color: $white;
+    transform: translateY(calc(70px + 4em));
+  }
+  .title {
+    a {
+      color: $white;
+    }
+  }
+  .button {
+    display: block;
+    width: 100px;
+    margin: 2em auto 1em;
+    text-align: center;
+    font-size: 12px;
+    color: $white;
+    line-height: 1;
+    position: relative;
+    font-weight: 700;
+    &::after {
+      content: "\2192";
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      transition: all 0.3s;
+    }
+    &:hover {
+      &::after {
+        transform: translate(5px, -50%);
         opacity: 1;
       }
     }
-    
-    &-overlay {
-      overflow: hidden;
-      position: relative;
-      transform: translate3d(0,100%,0);
-      transition: transform $indexHoverAT 0.1s;
-      color: transparent;
-      
-      &:before {
-        content: attr(data-index);
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        transform: translate3d(0,-100%,0);
-        transition: transform $indexHoverAT 0.1s;
-      }
-      
-      @include elHover {
-        transform: translate3d(0,0,0);
-        
-        &:before {
-          transform: translate3d(0,0,0);
-        }
-      }
-    }
-  }
-
-  @for $i from 0 to $numOfEls {
-    &:nth-child(#{$i + 1}) {
-      $x: (100% + $elMrgRel) * $i;
-      transform: translate3d($x,0,0);
-      transform-origin: $x + 50% 50%;
-      
-      @include contElActive {
-        
-        &:not(.s--active) {
-          transform: scale(0.5) translate3d($x,0,0);
-          opacity: 0;
-          transition: transform $fadeoutAT, opacity $fadeoutAT;
-        }
-      }
-
-      .el__inner {
-        transition-delay: $initDelayStep * $i;
-      }
-
-      .el__bg {
-        transform: translate3d($elW * $i * -1,0,0);
-
-        &:before {
-          transition-delay: 0.1s * $i;
-          background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/onepgscr-#{$i + 3}.jpg');
-        }
-      }
-    }
-  }
-  
-  &:hover {
-    
-    .el__bg:after {
-      opacity: 0;
-    }
-  }
-
-  &.s--active {
-    z-index: 1;
-    width: 100%;
-    transform: translate3d(0,0,0);
-    transition: transform $moveAT, width $expandAT $moveAT + $expandDelay, z-index 0s;
-
-    .el__bg {
-      transform: translate3d(0,0,0);
-      transition: transform $moveAT;
-
-      &:before {
-        transition-delay: $moveAT;
-        transform: scale(1.1);
-      }
-    }
   }
 }
 
-.icon-link {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  width: 32px;
-
-  img {
-    width: 100%;
-    vertical-align: top;
-  }
-
-  &--twitter {
-    left: auto;
-    right: 5px;
-  }
-}

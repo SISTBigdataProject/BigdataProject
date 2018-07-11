@@ -16,5 +16,4 @@
            p:prefix="/"
            p:suffix=".jsp"
         />
-
 </beans>

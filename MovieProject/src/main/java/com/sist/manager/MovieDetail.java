@@ -32,11 +32,15 @@ public class MovieDetail extends Thread {
 			Elements story1 = doc.select("div.story_area h5");
 			Elements story2 = doc.select("div.story_area p");
 			Elements actorImage = doc.select("div.obj_section li a img[src*=search.pstatic.net]");
-
+			
+			String pst_sm=poster.attr("src"); //포스터 스몰 사이즈 링크
+			int idx=pst_sm.indexOf("?");
+			String pst_bg=pst_sm.substring(0,idx); //포스터 빅 사이즈 링크
+			
 			MovieVO vo = new MovieVO();
 			
 			vo.setTitle(title.text());
-			vo.setPoster(poster.attr("src"));
+			vo.setPoster(pst_bg);
 			vo.setDirector(director.text());
 			vo.setActor(actor.text());
 			vo.setGenre(genre.text());
@@ -49,26 +53,23 @@ public class MovieDetail extends Thread {
 			vo.setCode(link.substring(link.lastIndexOf("=") + 1));
 			dlist.add(vo);
 
-			/*
-			 * System.out.println("링크"+links.get(j).getLink().substring(links.
-			 * get(j).getLink().lastIndexOf("=")+1));
-			 * System.out.println("===========================");
-			 * System.out.println("No)"+(i+1));
-			 * System.out.println("제목:"+title.text());
-			 * 
-			 * System.out.println("제작국가:"+country.text());
-			 * System.out.println("감독:"+director.text());
-			 * System.out.println("배우:"+actor.text());
-			 * 
-			 * System.out.println("개봉일:"+regdate.text());
-			 * System.out.println("장르:"+genre.text()); //공연실황, 에로말
-			 * System.out.println("등급:"+grade.text()); //[국내] [해외] 도움말
-			 * System.out.println("포스터:"+poster.attr("src"));
-			 * System.out.println("줄거리:"+story1.text()+" "+story2.text());
-			 * System.out.println("배우이미지:"+actorImage.attr("src")); //
-			 * System.out.println("코드"+Integer.parseInt(str));
-			 * System.out.println("===========================");
-			 */
+			 System.out.println("===========================");
+			 System.out.println("No)"+(i+1));
+			 System.out.println("제목:"+title.text());
+			 
+			 System.out.println("제작국가:"+country.text());
+			 System.out.println("감독:"+director.text());
+			 System.out.println("배우:"+actor.text());
+			 
+			 System.out.println("개봉일:"+regdate.text());
+			 System.out.println("장르:"+genre.text()); //공연실황, 에로말
+			 System.out.println("등급:"+grade.text()); //[국내] [해외] 도움말
+			 System.out.println("포스터:"+poster.attr("src"));
+			System.out.println("줄거리:"+story1.text()+" "+story2.text());
+			 System.out.println("배우이미지:"+actorImage.attr("src")); //
+			 System.out.println("코드"+link.substring(link.lastIndexOf("=") + 1));
+			 System.out.println("===========================");
+			 
 			i++;
 
 		} catch (Exception ex) {
