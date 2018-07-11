@@ -63,7 +63,7 @@ public class MovieManager {
 			rlist[k] = new ReviewMovie(clist[k], tlist[k]);
 			rlist[k].start();
 			if (k % 3000 == 0 && k != 0) {
-				for (int j = 0; j < k; j++) {
+				for (int j  = 0; j < k; j++) {
 					while (rlist[j].isAlive())
 						;
 				}

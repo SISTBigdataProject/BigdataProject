@@ -254,19 +254,20 @@
 			</div>	
 		<div style="height:50px;"></div>-->
 		
-		<div class="col-sm-2">
-			<div>
-			<h2>예매율 1위 51.8%</h2>
-			<a data-toggle="modal" data-target="#myModal"><img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
-			<h3>평점 8.75</h3>
-			</div>
-			<div>
-			 <ul class="list-group list-group-flush">
-			  <li class="list-group-item"><em>개요</em></li>
-			  <li class="list-group-item"><em>감독</em></li>
-			  <li class="list-group-item"><em>출연</em></li>
-			  <li class="list-group-item"><em>등급</em></li>
-			</ul> 
+			<div class="col-sm-3">
+				<div>
+				<h2>예매율 1위 51.8%</h2>
+				<a data-toggle="modal" data-target="#myModal"><img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></a>
+				<h3>평점 8.75</h3>
+				</div>
+				<div>
+				 <ul class="list-group list-group-flush">
+				  <li class="list-group-item"><strong>개요</strong><br/>액션, 모험, SF 미국 118분 2018 .07.04 개봉 </li>
+				  <li class="list-group-item"><strong>감독</strong></li>
+				  <li class="list-group-item"><strong>출연</strong></li>
+				  <li class="list-group-item"><strong>등급</strong></li>
+				</ul> 
+				</div>
 			</div>
 		</div>
 	</div>
