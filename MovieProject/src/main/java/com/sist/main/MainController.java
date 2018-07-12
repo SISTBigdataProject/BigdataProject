@@ -11,8 +11,6 @@ import com.sist.manager.MovieDAO;
 import com.sist.manager.MovieVO;
 import com.sist.news.MovieNews;
 import com.sist.news.MovieNewsVO;
-import com.sist.news.MovieRank;
-import com.sist.news.MovieRankVO;
 
 @Controller
 public class MainController {
@@ -33,17 +31,28 @@ public class MainController {
 		model.addAttribute("movie_jsp", "main_default.jsp");
 		return "main/main";
 	}
-
 	@RequestMapping("main/movie_list.do")
-	public String Movie_list(String page, Model model) {
+	public String movieFind(String search,Model model)
+	{
+		System.out.println(search);
+		List<MovieVO> list=dao.movieFind(search);
+		model.addAttribute("list",list);
+		model.addAttribute("search", search);
+		model.addAttribute("movie_jsp", "movie_find.jsp");
+		return "main/main";
+	}
+	//
+/*	@RequestMapping("main/movie_list.do")
+	public String Movie_list(String page,String searh, Model model) {
 		if (page == null)
 			page = "1";
 		int curpage = Integer.parseInt(page);
 		List<MovieVO> list = dao.movieListData(curpage);
-	/*	int totalpage = dao.getMovieTotalPage();*/
+		int totalpage = dao.getMovieTotalPage();
 		model.addAttribute("list", list);
 		model.addAttribute("curpage", curpage);
-	/*	model.addAttribute("totalpage", totalpage);*/
+		model.addAttribute("totalpage", totalpage);
 		return "main/movie_list";
-	}
+	}*/
+	
 }
