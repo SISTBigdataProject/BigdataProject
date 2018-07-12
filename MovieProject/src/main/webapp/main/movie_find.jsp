@@ -9,13 +9,8 @@
 <link rel="stylesheet" type="text/css" href="table.css">
 </head>
 <body>
-  <div class="row">
-<%-- 		   <ul>
-			  <li><a href="movie_list.do?page=${curpage>1?curpage-1:curpage }">이전</a></li>
-			  <li>${curpage } page / ${totalpage } pages</li>
-			  <li><a href="movie_list.do?page=${curpage<totalpage?curpage+1:curpage }">다음</a></li>
-			</ul>  --%>
-  </div>
+<div class="container">
+<div class="row">
   <!--  -->
   <table id="table-content" width=100%>
     <tr bgcolor="gray">
@@ -36,7 +31,15 @@
       </tr>
     </c:forEach>
   </table>
-  		
+  		  <div class="row">
+		   <ul>
+			  <li><a href="movie_find.do?search=${search }&page=${curpage>1?curpage-1:curpage }">이전</a></li>
+			  <li>${curpage } page / ${totalpage } pages</li>
+			  <li><a href="movie_find.do?search=${search }&page=${curpage<totalpage?curpage+1:curpage }">다음</a></li>
+			</ul> 
+  </div>
+  </div>
+  </div>
 </body>
 </html>
 

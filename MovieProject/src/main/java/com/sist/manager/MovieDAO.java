@@ -26,18 +26,6 @@ public class MovieDAO {
 			mt.insert(vo, "moviedetail");
 	}
 
-	/* movieListData(curpage) */
-	public List<MovieVO> movieListData(int page) {
-		List<MovieVO> list = new ArrayList<MovieVO>();
-		int rowSize = 20;
-		int skip = (rowSize * page) - rowSize;
-		Query query = new Query();
-		/* query.with(new Sort(Sort.Direction.ASC,"mno")); */
-		query.skip(skip).limit(rowSize);// MySql...
-		list = mt.find(query, MovieVO.class, "moviedetail");
-		return list;
-	}
-
 	public List<MovieVO> mainMovieList() {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		Query query = new Query();
@@ -69,15 +57,17 @@ public class MovieDAO {
 		}
 		return list;
 	}
-	//
+
 	// 검색
-	public List<MovieVO> movieFind(String search)
+	public List<MovieVO> movieFind(String search, int page)
 	{
 		List<MovieVO>list=new ArrayList<MovieVO>();
+		int rowSize = 10;
+		int skip = (rowSize * page) - rowSize;
 		String qr="{title:{$regex:'.*"+search+"'}}";
 		BasicQuery query=new BasicQuery(qr);
+		query.skip(skip).limit(rowSize);
 		list=mt.find(query, MovieVO.class,"moviedetail");
 		return list;
 	}
-
 }

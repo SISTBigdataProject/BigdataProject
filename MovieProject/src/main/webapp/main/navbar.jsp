@@ -53,7 +53,7 @@
 				
 				<!-- Search icon & input form -->
 				<div id="wrap">
-						  <form action="movie_list.do" autocomplete="on">
+						  <form action="movie_find.do" autocomplete="on">
 						  <input id="search" name="search" type="text" placeholder="찾고 싶은 영화?" required>
 						  <input id="search_submit" value="Rechercher" type="submit">
 						  </form>

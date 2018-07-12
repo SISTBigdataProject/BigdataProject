@@ -33,14 +33,20 @@ public class MainController {
 		model.addAttribute("movie_jsp", "main_default.jsp");
 		return "main/main";
 	}
-	@RequestMapping("main/movie_list.do")
-	public String movieFind(String search,Model model)
+	@RequestMapping("main/movie_find.do")
+	public String movieFind(String search,String page,Model model)
 	{
 		System.out.println(search);
-		List<MovieVO> list=dao.movieFind(search);
+		if (page == null)
+			page = "1";
+		int curpage = Integer.parseInt(page);
+		List<MovieVO> list=dao.movieFind(search,curpage);
+		int totalpage=list.size();
 		model.addAttribute("list",list);
 		model.addAttribute("search", search);
 		model.addAttribute("movie_jsp", "movie_find.jsp");
+		model.addAttribute("curpage", curpage);
+		model.addAttribute("totalpage", totalpage);
 		return "main/main";
 	}
 	//
