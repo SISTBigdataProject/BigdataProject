@@ -1,14 +1,18 @@
 package com.sist.news;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class MovieRank {
-
 	
+	public void main(String[] args)
+	{
+		
+	}
+		
 	public static List<MovieRankVO> MovieRank()
 	{
 		List<MovieRankVO> list=new ArrayList<MovieRankVO>();
@@ -29,9 +33,12 @@ public class MovieRank {
 				MovieRankVO vo=new MovieRankVO();
 				vo.setTitle(title.get(i).text());
 				vo.setPoster(poster.get(i).attr("src"));
-				vo.setSummary(summary.get(i*3).text());
-				vo.setDirector(summary.get(i*3+1).text());
-				vo.setActors(summary.get(i*3+2).text());
+				vo.setNetizen_star(netizen_star.text());
+				vo.setRsvRate(rsvRate.text());
+				vo.setSummary(summary.get(i*3).text()); // 장르, 시간, 개봉일
+				vo.setDirector(summary.get(i*3+1).text()); // 감독
+				vo.setActors(summary.get(i*3+2).text()); // 출연배우
+				
 			}
 			
 		} catch (Exception ex) {

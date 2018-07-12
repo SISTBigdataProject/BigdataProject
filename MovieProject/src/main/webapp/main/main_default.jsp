@@ -413,50 +413,45 @@
 	</div>
 
 	<!-- 개봉작 정보 -->
-	<div id="contact" class="container-fluid bg-3 text-center">
-	
-<%-- 	flist
-		<c:forEach var="vo" items="${nlist }" begin="0" end="7" varStatus="status">			
-			<c:if test="${status.index%4 eq '0' }"><div class="row"></c:if> --%>
+	<div id="contact" class="container-fluid bg-3 text-center">		
+		<c:forEach var="vo" items="${flist}" begin="0" end="11"	varStatus="status">
+			<c:if test="${status.index%6 eq '0' }"><div class="row no-gutter"></c:if>
+				<div class="col-sm-2">
+					<img src="${vo.poster }" style="width: 100%; height: 510px; object-fit: cover;" alt="Image">
+				</div>
+			<c:if test="${status.index%6 eq '5'}"></div></c:if>
+		</c:forEach>
+		</div>
+		<script>
+			$(document).ready(function(){
+			  // Initialize Tooltip
+			  $('[data-toggle="tooltip"]').tooltip(); 
+			  
+			  // Add smooth scrolling to all links in navbar + footer link
+			  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 			
-	<c:forEach var="vo" items="${flist}" begin="0" end="11"	varStatus="status">
-		<c:if test="${status.index%6 eq '0' }"><div class="row no-gutter"></c:if>
-			<div class="col-sm-2">
-				<img src="${vo.poster }" class="img-responsive" style="width: 100%" alt="Image">
-			</div>
-		<c:if test="${status.index%4 eq '5'}"></div></c:if>
-	</c:forEach>
-	</div>
-<script>
-		$(document).ready(function(){
-		  // Initialize Tooltip
-		  $('[data-toggle="tooltip"]').tooltip(); 
-		  
-		  // Add smooth scrolling to all links in navbar + footer link
-		  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-		
-		    // Make sure this.hash has a value before overriding default behavior
-		    if (this.hash !== "") {
-		
-		      // Prevent default anchor click behavior
-		      event.preventDefault();
-		
-		      // Store hash
-		      var hash = this.hash;
-		
-		      // Using jQuery's animate() method to add smooth page scroll
-		      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-		      $('html, body').animate({
-		        scrollTop: $(hash).offset().top
-		      }, 900, function(){
-		   
-		        // Add hash (#) to URL when done scrolling (default click behavior)
-		        window.location.hash = hash;
-		      });
-		    } // End if
-		  });
-		})
-	</script>
+			    // Make sure this.hash has a value before overriding default behavior
+			    if (this.hash !== "") {
+			
+			      // Prevent default anchor click behavior
+			      event.preventDefault();
+			
+			      // Store hash
+			      var hash = this.hash;
+			
+			      // Using jQuery's animate() method to add smooth page scroll
+			      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+			      $('html, body').animate({
+			        scrollTop: $(hash).offset().top
+			      }, 900, function(){
+			   
+			        // Add hash (#) to URL when done scrolling (default click behavior)
+			        window.location.hash = hash;
+			      });
+			    } // End if
+			  });
+			})
+		</script>
 
 </body>
 </html>
