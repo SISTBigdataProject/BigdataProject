@@ -11,6 +11,8 @@ import com.sist.manager.MovieDAO;
 import com.sist.manager.MovieVO;
 import com.sist.news.MovieNews;
 import com.sist.news.MovieNewsVO;
+import com.sist.news.MovieRank;
+import com.sist.news.MovieRankVO;
 
 @Controller
 public class MainController {
