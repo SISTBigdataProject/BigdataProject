@@ -69,6 +69,7 @@ public class MovieDAO {
 		}
 		return list;
 	}
+	//
 	// 검색
 	public List<MovieVO> movieFind(String search)
 	{

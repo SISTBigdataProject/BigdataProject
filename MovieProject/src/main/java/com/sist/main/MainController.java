@@ -39,6 +39,7 @@ public class MainController {
 		model.addAttribute("movie_jsp", "movie_find.jsp");
 		return "main/main";
 	}
+	//
 /*	@RequestMapping("main/movie_list.do")
 	public String Movie_list(String page,String searh, Model model) {
 		if (page == null)

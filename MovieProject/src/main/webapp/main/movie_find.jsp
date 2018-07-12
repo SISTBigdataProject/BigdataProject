@@ -16,6 +16,7 @@
 			  <li><a href="movie_list.do?page=${curpage<totalpage?curpage+1:curpage }">다음</a></li>
 			</ul>  --%>
   </div>
+  <!--  -->
   <table id="table-content" width=100%>
     <tr bgcolor="gray">
       <th width=10%>번호</th>
