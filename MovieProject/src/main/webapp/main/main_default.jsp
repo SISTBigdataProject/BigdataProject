@@ -88,59 +88,25 @@
 			우리는 영화 데이터를 제공하고, 분석하고, 네이버 댓글 및 평점 데이터를 jsoup으로 훔쳐서 가공 후 사용하는 사이트를 계획했고,
 			진행 중이고, 이제 할 일은 뭐가 남았냐면 보자보자 분석 페이지 디자인 (그래프 골라서 활용 방안 논의해야 함), 박스오피스 정보,<br>
 			뭐 딱 그 정도 인듯. 디자인도 거의 다 끝났고, 취직만 하면 되겠습니다. <br>
-			우리는 영화 데이터를 제공하고, 분석하고, 네이버 댓글 및 평점 데이터를 jsoup으로 훔쳐서 가공 후 사용하는 사이트를 계획했고,
-			진행 중이고, 이제 할 일은 뭐가 남았냐면 보자보자 분석 페이지 디자인 (그래프 골라서 활용 방안 논의해야 함), 박스오피스 정보,
-			뭐 딱 그 정도 인듯. 디자인도 거의 다 끝났고, 취직만 하면 되겠습니다. 
-			우리는 영화 데이터를 제공하고, 분석하고, 네이버 댓글 및 평점 데이터를 jsoup으로 훔쳐서 가공 후 사용하는 사이트를 계획했고,
-			진행 중이고, 이제 할 일은 뭐가 남았냐면 보자보자 분석 페이지 디자인 (그래프 골라서 활용 방안 논의해야 함), 박스오피스 정보,
-			뭐 딱 그 정도 인듯. 디자인도 거의 다 끝났고, 취직만 하면 되겠습니다. 
-			우리는 영화 데이터를 제공하고, 분석하고, 네이버 댓글 및 평점 데이터를 jsoup으로 훔쳐서 가공 후 사용하는 사이트를 계획했고,
-			진행 중이고, 이제 할 일은 뭐가 남았냐면 보자보자 분석 페이지 디자인 (그래프 골라서 활용 방안 논의해야 함), 박스오피스 정보,
-			뭐 딱 그 정도 인듯. 디자인도 거의 다 끝났고, 취직만 하면 되겠습니다. 
 		</p>
 		<br>
-		<div class="row">
-			<div class="col-sm-4">
-				<p class="text-center">
-					<strong>Name</strong>
-				</p>
-				<br> <a href="#demo" data-toggle="collapse"> <img
-					src="bandmember.jpg" class="img-circle person" alt="Random Name"
-					width="255" height="255">
-				</a>
-				<div id="demo" class="collapse">
-					<p>Guitarist and Lead Vocalist</p>
-					<p>Loves long walks on the beach</p>
-					<p>Member since 1988</p>
-				</div>
+
+		<div class="row text-center">
+			<div class="col-sm-3">
+				<img src="../img/cgv.png" href="#" style="width:40%; padding-bottom: 5px;">
+				<p>CGV</p>			
 			</div>
-			<div class="col-sm-4">
-				<p class="text-center">
-					<strong>Name</strong>
-				</p>
-				<br> 
-					<a href="#demo2" data-toggle="collapse"> 
-					<img src="bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-				</a>
-				<div id="demo2" class="collapse">
-					<p>Drummer</p>
-					<p>Loves drummin'</p>
-					<p>Member since 1988</p>
-				</div>
+			<div class="col-sm-3">
+				<img src="../img/메가박스.png" href="#" style="width:40%; padding-bottom: 5px;">	
+				<p>메가박스</p>			
 			</div>
-			<div class="col-sm-4">
-				<p class="text-center">
-					<strong>Name</strong>
-				</p>
-				<br> 
-					<a href="#demo3" data-toggle="collapse"> 
-					<img src="bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-				</a>
-				<div id="demo3" class="collapse">
-					<p>Bass player</p>
-					<p>Loves math</p>
-					<p>Member since 2005</p>
-				</div>
+			<div class="col-sm-3">
+				<img src="../img/롯데시네마.png" href="#" style="width:40%; padding-bottom: 5px;">
+				<p>롯데시네마</p>				
+			</div>
+			<div class="col-sm-3">
+				<img src="../img/왓챠.png" href="#" style="width:40%; padding-bottom: 5px;">
+				<p>왓챠</p>			
 			</div>
 		</div>
 	</div>
@@ -245,19 +211,31 @@
 	</div>
 	<!-- 계절별 네이버 영화 댓글 분석 페이지 이동 섹션 끝 --> 
 
-	<!-- 장르별  -->
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-3">
-				<div>
-				 <ul class="list-group list-group-flush">
-				 <li class="list-group-item"> <h2>1위</h2>(예매율: 51.8%)
-				<img src="https://movie-phinf.pstatic.net/20180530_170/1527645793223uhWgz_JPEG/movie_image.jpg" class="img-responsive" style="width: 100%" alt="Image"></li>
-				 <li class="list-group-item"><strong>앤트맨과 와스프</strong><br/>	
-				  평점 8.75 | 2018 .07.04 개봉</li>				
-				</ul> 
+	<!-- 영화 예매 순위  -->
+	<div class="container-fluid" style="margin:30px 30px;">
+		<div class="row text-center" style="padding-top: 25px; padding-bottom:20px;">
+			<h3>박스오피스</h3>
+			<p> 네이버 평점 순위 1위에서 2000위까지의 영화 댓글, 평점, 리뷰 데이터를 작성 월 기준으로 분석하여, <br> 
+				연관어, 감성, 언급량 추이 등을 그래프로 보여주는 페이지입니다.</p>
+		</div>
+		<div class="row">	
+		<c:forEach var="vo" items="${rlist }" begin="0" end="11" varStatus="status">			
+			<c:if test="${status.index%6 eq '0' }"><div class="row"></c:if>
+			<div class="col-sm-2">
+				<div class="mcard">
+					  <a class="mcard-link" href="#"></a>
+					  <img src="${vo.poster }" alt="Avatar" style="width:100%">
+					  <div class="mcardcontainer">
+					    <span class="badge badge-success">${status.index+1}위</span> 
+					    <p id="title"><b>${vo.title }</b> 
+					    <p><b>평점</b> ${vo.netizen_star }<br/>
+				  		<p><b>감독</b> ${vo.director }<br/>
+				 		<p><b>출연</b> ${vo.actors }<br/></p>
+					  </div>
 				</div>
 			</div>
+			<c:if test="${status.index%6 eq '5'}"></div></c:if>
+			</c:forEach>
 		</div>
 	</div>
 	
