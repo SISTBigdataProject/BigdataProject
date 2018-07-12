@@ -50,6 +50,7 @@
 							</ul>
 					 </li>
 				</ul>
+				
 				<!-- Search icon & input form -->
 				<div id="wrap">
 						  <form action="movie_list.do" autocomplete="on">
