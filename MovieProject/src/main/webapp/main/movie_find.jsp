@@ -10,11 +10,11 @@
 </head>
 <body>
   <div class="row">
-		   <ul>
+<%-- 		   <ul>
 			  <li><a href="movie_list.do?page=${curpage>1?curpage-1:curpage }">이전</a></li>
 			  <li>${curpage } page / ${totalpage } pages</li>
 			  <li><a href="movie_list.do?page=${curpage<totalpage?curpage+1:curpage }">다음</a></li>
-			</ul> 
+			</ul>  --%>
   </div>
   <table id="table-content" width=100%>
     <tr bgcolor="gray">
@@ -23,6 +23,7 @@
       <th width=25%>영화명</th> 
       <th width=35%>배우</th>
     </tr>
+    <h1>검색하신 "${search }"의 결과</h1>
     <c:forEach var="vo" items="${list }">
       <tr class="dataTr">
        <td width=10% align="center">${vo.code }</td>

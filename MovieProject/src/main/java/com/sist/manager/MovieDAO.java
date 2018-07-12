@@ -2,6 +2,7 @@ package com.sist.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -66,6 +67,15 @@ public class MovieDAO {
 			if (!list.contains(s))
 				list.add(s);
 		}
+		return list;
+	}
+	// 검색
+	public List<MovieVO> movieFind(String search)
+	{
+		List<MovieVO>list=new ArrayList<MovieVO>();
+		String qr="{title:{$regex:'.*"+search+"'}}";
+		BasicQuery query=new BasicQuery(qr);
+		list=mt.find(query, MovieVO.class,"moviedetail");
 		return list;
 	}
 
