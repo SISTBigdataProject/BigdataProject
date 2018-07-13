@@ -70,4 +70,11 @@ public class MovieDAO {
 		list=mt.find(query, MovieVO.class,"moviedetail");
 		return list;
 	}
+	public int movieFindTotal(String search)
+	{
+		List<MovieVO>list=new ArrayList<MovieVO>();		
+		BasicQuery query=new BasicQuery("{title:{$regex:'.*"+search+"'}}");
+		list=mt.find(query, MovieVO.class,"moviedetail");
+		return list.size();		
+	}
 }

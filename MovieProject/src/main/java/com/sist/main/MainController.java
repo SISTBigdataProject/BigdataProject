@@ -41,26 +41,18 @@ public class MainController {
 			page = "1";
 		int curpage = Integer.parseInt(page);
 		List<MovieVO> list=dao.movieFind(search,curpage);
-		int totalpage=list.size();
+		int total=dao.movieFindTotal(search);
+		int totalpage=(int)Math.ceil(total/10.0);
+		if(totalpage==0)totalpage=1;
 		model.addAttribute("list",list);
 		model.addAttribute("search", search);
 		model.addAttribute("movie_jsp", "movie_find.jsp");
 		model.addAttribute("curpage", curpage);
+		model.addAttribute("total", total);
 		model.addAttribute("totalpage", totalpage);
 		return "main/main";
 	}
-	//
-/*	@RequestMapping("main/movie_list.do")
-	public String Movie_list(String page,String searh, Model model) {
-		if (page == null)
-			page = "1";
-		int curpage = Integer.parseInt(page);
-		List<MovieVO> list = dao.movieListData(curpage);
-		int totalpage = dao.getMovieTotalPage();
-		model.addAttribute("list", list);
-		model.addAttribute("curpage", curpage);
-		model.addAttribute("totalpage", totalpage);
-		return "main/movie_list";
-	}*/
+
+
 	
 }
