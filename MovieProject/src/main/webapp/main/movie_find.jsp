@@ -32,7 +32,7 @@
        <td width=30% align="center">
         <img src="${vo.poster }" width=30 height=30>
        </td>
-       <td width=25% align="left">${vo.title }</td>
+       <td width=25% align="left"><a href="movie_detail.do?code=${vo.code }">${vo.title }</a></td>
        <td width=35% align="left">${vo.actor }</td>
       </tr>     
     </c:forEach>

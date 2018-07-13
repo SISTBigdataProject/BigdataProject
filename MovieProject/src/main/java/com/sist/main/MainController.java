@@ -1,5 +1,6 @@
 package com.sist.main;
 
+import java.io.FileReader;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class MainController {
 
 	@Autowired
 	private MovieDAO dao;
-	
+	/*@Autowired
+	private MakeFile mk;*/
 	@RequestMapping("main/main.do")
 	public String main(Model model) {
 		List<MovieNewsVO> clist = MovieNews.coldata();
@@ -34,7 +36,7 @@ public class MainController {
 		return "main/main";
 	}
 	@RequestMapping("main/movie_find.do")
-	public String movieFind(String search,String page,Model model)
+	public String movieFind(String search,String page,Model model) 
 	{
 		System.out.println(search);
 		if (page == null)
@@ -50,6 +52,13 @@ public class MainController {
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("total", total);
 		model.addAttribute("totalpage", totalpage);
+		return "main/main";
+	}
+	@RequestMapping("main/movie_detail.do")
+	public String movieFile(String code, Model model) 
+	{
+		dao.gradeFile(code);
+		dao.reviewFile(code);
 		return "main/main";
 	}
 

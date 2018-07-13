@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 
 @Repository
@@ -22,7 +24,6 @@ public class MovieDAO {
 	}
 
 	public void MovieInsert(MovieVO vo) {
-		if (!(vo.getGenre().contains("에로")))
 			mt.insert(vo, "moviedetail");
 	}
 
@@ -77,4 +78,48 @@ public class MovieDAO {
 		list=mt.find(query, MovieVO.class,"moviedetail");
 		return list.size();		
 	}
+	
+	//평점 파일 생성 
+		public void gradeFile(String code) {
+			try{
+			//System.out.println(code);
+			List<GradeMovieVO> list=new ArrayList<GradeMovieVO>();
+			BasicQuery query=new BasicQuery("{code:'"+code+"'}");
+			list=mt.find(query, GradeMovieVO.class,"moviegrade");
+			String data="";
+			for(GradeMovieVO vo:list)
+			{
+			data+=vo.getGrcontent()+"\n";
+			}
+			//System.out.println(data);
+			FileWriter fw=new FileWriter("/home/sist/MovieData/grade.txt");
+			fw.write(data);
+			fw.close();
+			}catch (Exception e) 
+			{
+				System.out.println(e.getMessage());
+			}
+		}
+		
+		//리뷰 파일 생성 
+		public void reviewFile(String code){
+			try{
+			//System.out.println(code);
+			List<ReviewMovieVO> list=new ArrayList<ReviewMovieVO>();
+			BasicQuery query=new BasicQuery("{code:'"+code+"'}");
+			list=mt.find(query, ReviewMovieVO.class,"moviereview");
+			String data="";
+			for(ReviewMovieVO vo:list)
+			{
+			data+=vo.getRvcontent()+"\n";
+			}
+			//System.out.println(data);
+			FileWriter fw=new FileWriter("/home/sist/MovieData/review.txt");
+			fw.write(data);
+			fw.close();
+			}catch (Exception e) 
+			{
+				System.out.println(e.getMessage());
+			}
+		}
 }
