@@ -7,6 +7,24 @@ public class GradeMovieVO {
 	private String grcontent;// 평점 내용
 	private double grscore;// 평점 평점
 	private String grmon;// 평점 작성 달
+	private int count;
+	private String score;
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
+	}
 
 	public String getTitle() {
 		return title;

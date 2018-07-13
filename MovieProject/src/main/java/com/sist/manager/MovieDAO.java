@@ -122,4 +122,36 @@ public class MovieDAO {
 				System.out.println(e.getMessage());
 			}
 		}
+		
+		//평점 개수 
+		public int gradeCount(String code,double grscore){
+			List<GradeMovieVO> list=new ArrayList<GradeMovieVO>();
+			BasicQuery query=new BasicQuery("{$and:[{code:'"+code+"'},{grscore:"+grscore+"}]}");			
+			//find({$and:[{"code":"19469"},{"grscore":5.0}]}).count()
+			list=mt.find(query, GradeMovieVO.class,"moviegrade");
+			int count=list.size();
+			return count;
+		}
+		
+/*		public List<GradeMovieVO>  gradeCount(String code){
+			List<GradeMovieVO> list=new ArrayList<GradeMovieVO>();
+			double[] grscore=new double[11];
+			for(int i=0; i<11;i++)
+			{
+				GradeMovieVO vo=new GradeMovieVO();
+				if(i==0)
+					grscore[i]=0;
+				else
+					grscore[i]=grscore[i-1]+0.5;
+			
+			BasicQuery query=new BasicQuery("{$and:[{code:'"+code+"'},{grscore:"+grscore[i]+"}]}");			
+			//find({$and:[{"code":"19469"},{"grscore":5.0}]}).count()
+			list=mt.find(query, GradeMovieVO.class,"moviegrade");
+			int count=list.size();
+			vo.setScore(String.valueOf(grscore[i]));
+			vo.setCount(count);		
+			list.add(vo);
+			}
+			return list;
+		}*/
 }

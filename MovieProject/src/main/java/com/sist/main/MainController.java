@@ -54,14 +54,56 @@ public class MainController {
 		model.addAttribute("totalpage", totalpage);
 		return "main/main";
 	}
-	@RequestMapping("main/movie_detail.do")
+	
+	/*dao.gradeFile(code);
+	dao.reviewFile(code);*/
+	
+	@RequestMapping("main/movie_graph.do")
 	public String movieFile(String code, Model model) 
 	{
-		dao.gradeFile(code);
-		dao.reviewFile(code);
+		double[] grscore=new double[6];//11
+		String[] strscore=new String[6];//11
+		String[] count=new String[6];//11
+		String graph="";
+		
+		for(int i=0; i<6;i++) //11
+		{
+			if(i==0)
+				grscore[i]=0;
+			else
+				grscore[i]=grscore[i-1]+1;//0.5
+			strscore[i]=String.valueOf(grscore[i]);
+			count[i]=String.valueOf(dao.gradeCount(code, grscore[i]));
+			if(i==6)//11
+				graph=graph+"{ y: \'"+strscore[i]+"\', x: "+count[i]+" }";
+			else
+				graph=graph+"{ y: \'"+strscore[i]+"\', x: "+count[i]+" },\n";
+		}
+		System.out.println(graph);
+		//{ y: '2006', a: 100 }
+		model.addAttribute("graph", graph);
+		model.addAttribute("movie_jsp", "movie_graph.jsp");
 		return "main/main";
 	}
-
-
+	
+/*	@RequestMapping("main/movie_graph.do")
+	public String movieFile(String code, Model model) 
+	{
+		List<GradeMovieVO> list=new ArrayList<GradeMovieVO>();
+		JSONArray arr=new JSONArray();
+		for(GradeMovieVO vo:list)
+		{
+		JSONObject obj=new JSONObject();
+			obj.put("y",vo.getScore());
+			obj.put("a",vo.getCount());
+			arr.add(obj);
+		}
+		
+		//System.out.println(graph);
+		//{ y: '2006', a: 100 }
+	model.addAttribute("graph",arr.toJSONString());
+	model.addAttribute("movie_jsp", "movie_graph.jsp");
+	return "main/main";
+	}*/
 	
 }
