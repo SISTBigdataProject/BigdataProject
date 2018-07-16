@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:hadoop="http://www.springframework.org/schema/hadoop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+   <!-- Configuration 설정 (하둡) -->
+   <hadoop:configuration id="hadoopConf">
+    <!-- Hadoop 주소 -->
+    fs.default.name=hdfs://NameNode:9000
+   </hadoop:configuration>
+   <!-- Job (Mapper,Reducer) -->
+    <hadoop:job id="MovieReviewJob"
+     configuration-ref="hadoopConf"
+      mapper="com.sist.hadoop.MovieMapper"
+      reducer="com.sist.hadoop.MovieReducer"
+      input-path="/MovieReview/"
+      output-path="/MovieReview_output/"
+      scope="prototype"
+    />
+        <hadoop:job id="MovieGradeJob"
+     configuration-ref="hadoopConf"
+      mapper="com.sist.hadoop.MovieMapper"
+      reducer="com.sist.hadoop.MovieReducer"
+      input-path="/MovieGrade/"
+      output-path="/MovieGrade_output/"
+      scope="prototype"
+    />
+   <!-- Job실행명령  -->
+   <hadoop:job-runner job-ref="MovieReviewJob" run-at-startup="false"/>
+   <hadoop:job-runner job-ref="MovieGradeJob" run-at-startup="false"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
