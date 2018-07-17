@@ -21,7 +21,7 @@
 </head>
 		<div class="hero-image" style="background-image: url(${vo.photo});">
 		  <div class="hero-text">
-		    <h1 style="font-size:50px; text-shadow: 2px 2px #000;"><a href="movie_analysis.do?code=${vo.code }">${vo.title}</a></h1>
+		    <h1 style="font-size:50px; text-shadow: 2px 2px #000;">${vo.title}</h1>
 		    <p>평점: ${vo.eval }</p>
 		  </div>
 		</div>
@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-sm-9">
 					
-					<h2>${vo.title }
+					<a href="movie_analysis.do?code=${vo.code }"><h2>${vo.title }</a>
 					<c:if test="${countstars>0}">
 						<button type="button" class="btn btn-primary btn-sm">Top 2000</button>
 					</c:if></h2>				

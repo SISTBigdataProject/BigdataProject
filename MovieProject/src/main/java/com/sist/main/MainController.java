@@ -121,8 +121,8 @@ public class MainController {
 		jobRunner();
 		// 하둡에서 분석결과 읽어 온다 ===> R
 		copyToLocal();
-		List<ResultVO> rList = resultData();
-		model.addAttribute("rList", rList);
+		List<ResultVO> rlist = resultData();
+		model.addAttribute("rlist", rlist);
 		model.addAttribute("movie_jsp", "movie_analysis.jsp");
 		return "main/main";
 	}
