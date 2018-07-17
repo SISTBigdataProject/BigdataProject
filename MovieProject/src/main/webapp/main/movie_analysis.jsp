@@ -5,11 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-location.href="main/main.do";
-</script>
 </head>
 <body>
-
+<div class="container">
+<div class="row">
+<h1>#tag</h1>
+<h1>word cloud</h1>
+</div>
+</div>
 </body>
 </html>

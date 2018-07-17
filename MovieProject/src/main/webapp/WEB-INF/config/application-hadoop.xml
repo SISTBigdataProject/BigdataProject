@@ -13,25 +13,25 @@
     fs.default.name=hdfs://NameNode:9000
    </hadoop:configuration>
    <!-- Job (Mapper,Reducer) -->
-    <hadoop:job id="MovieReviewJob"
+    <hadoop:job id="movieJob"
      configuration-ref="hadoopConf"
       mapper="com.sist.hadoop.MovieMapper"
       reducer="com.sist.hadoop.MovieReducer"
-      input-path="/MovieReview/"
-      output-path="/MovieReview_output/"
+      input-path="/movie_ns3/"
+      output-path="/movie_output_ns3/"
       scope="prototype"
     />
-        <hadoop:job id="MovieGradeJob"
+<!--         <hadoop:job id="MovieGradeJob"
      configuration-ref="hadoopConf"
       mapper="com.sist.hadoop.MovieMapper"
       reducer="com.sist.hadoop.MovieReducer"
       input-path="/MovieGrade/"
       output-path="/MovieGrade_output/"
       scope="prototype"
-    />
+    /> -->
    <!-- Job실행명령  -->
-   <hadoop:job-runner job-ref="MovieReviewJob" run-at-startup="false"/>
-   <hadoop:job-runner job-ref="MovieGradeJob" run-at-startup="false"/>
+   <hadoop:job-runner job-ref="movieJob" run-at-startup="false"/>
+<!--    <hadoop:job-runner job-ref="MovieGradeJob" run-at-startup="false"/> -->
 </beans>
 
 

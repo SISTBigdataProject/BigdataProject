@@ -1,13 +1,22 @@
 package com.sist.main;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.rosuda.REngine.REXP;
+import org.rosuda.REngine.Rserve.RConnection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.hadoop.mapreduce.JobRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sist.hadoop.ResultVO;
+import com.sist.manager.GradeMovieVO;
 import com.sist.manager.MovieDAO;
 import com.sist.manager.MovieVO;
 import com.sist.news.MovieNews;
@@ -20,8 +29,11 @@ public class MainController {
 
 	@Autowired
 	private MovieDAO dao;
-	/*@Autowired
-	private MakeFile mk;*/
+	@Autowired
+	private Configuration conf;
+	@Autowired
+	private JobRunner jr;
+	
 	@RequestMapping("main/main.do")
 	public String main(Model model) {
 		List<MovieNewsVO> clist = MovieNews.coldata();
@@ -55,8 +67,6 @@ public class MainController {
 		return "main/main";
 	}
 	
-	/*dao.gradeFile(code);
-	dao.reviewFile(code);*/
 	
 	@RequestMapping("main/movie_graph.do")
 	public String movieFile(String code, Model model) 
@@ -85,25 +95,90 @@ public class MainController {
 		model.addAttribute("movie_jsp", "movie_graph.jsp");
 		return "main/main";
 	}
-	
-/*	@RequestMapping("main/movie_graph.do")
-	public String movieFile(String code, Model model) 
+	@RequestMapping("main/movie_analysis")
+	public String movieAnalysis(String code, Model model)
+	{ 
+
+		 //  하둡에 분석 대상 파일 올리기 
+		dao.gradeFile(code);
+		dao.reviewFile(code);
+		 copyFromLocal();
+		 //  하둡에서 분석 실행
+		 jobRunner();
+		 // 하둡에서 분석결과 읽어 온다 ===> R
+		 copyToLocal();
+		 List<ResultVO> rList=resultData();
+		 model.addAttribute("rList", rList);
+		 model.addAttribute("movie_jsp", "movie_analysis.jsp");
+		return "main/main";
+	}
+	public List<ResultVO> resultData()
 	{
-		List<GradeMovieVO> list=new ArrayList<GradeMovieVO>();
-		JSONArray arr=new JSONArray();
-		for(GradeMovieVO vo:list)
+		List<ResultVO> list=new ArrayList<ResultVO>();
+		try
 		{
-		JSONObject obj=new JSONObject();
-			obj.put("y",vo.getScore());
-			obj.put("a",vo.getCount());
-			arr.add(obj);
+			RConnection rc=new RConnection();
+			rc.setStringEncoding("utf8");
+			rc.voidEval("data<-read.table(\"/home/sist/MovieData/result\")");
+			REXP p=rc.eval("data$V1");
+			String[] word=p.asStrings();
+			p=rc.eval("data$V2");
+			int[] count=p.asIntegers();
+			for(int i=0;i<word.length;i++)
+			{
+				ResultVO vo=new ResultVO();
+				vo.setWord(word[i]);
+				vo.setCount(count[i]);
+				list.add(vo);
+			}
+		}catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
 		}
-		
-		//System.out.println(graph);
-		//{ y: '2006', a: 100 }
-	model.addAttribute("graph",arr.toJSONString());
-	model.addAttribute("movie_jsp", "movie_graph.jsp");
-	return "main/main";
-	}*/
+		return list;
+	}
+	public void copyFromLocal()
+	{
+		try
+		{
+			  FileSystem fs=FileSystem.get(conf);
+			  // hadoop fs -ls...
+			  if(fs.exists(new Path("/movie_ns3/movie.txt")))
+			  {
+				   fs.delete(new Path("/movie_ns3/movie.txt"), true);// hadoop fs -rmr 파일 
+			  }
+			  if(fs.exists(new Path("/movie_output_ns3")))
+			  {
+				   fs.delete(new Path("/movie_output_ns3"), true);// hadoop fs -rmr 파일 
+			  }
+			  fs.copyFromLocalFile(new Path("/home/sist/MovieData/grade.txt"),new Path("/movie_ns3/movie.txt"));
+			  fs.close();
+		}catch(Exception ex)
+		{
+			System.out.println(ex.getMessage());
+		}
+	}
+	// MapReduce 실행
+	public void jobRunner()
+	{
+		try
+		{
+			 jr.call();
+		}catch(Exception ex) {}
+	}
+
+	public void copyToLocal()
+	{
+		 try
+		 {
+			 FileSystem fs=FileSystem.get(conf);//Hadoop 연결 
+			 fs.copyToLocalFile(new Path("/movie_output_ns3/part-r-00000"), new Path("/home/sist/MovieData/result"));
+			 fs.close();
+		 }catch(Exception ex) 
+		 {
+			 System.out.println(ex.getMessage());
+		 }
+	}
+
 	
 }

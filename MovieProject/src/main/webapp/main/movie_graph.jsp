@@ -66,8 +66,8 @@ function areaChart() {
     lineWidth: '3px',
    /*  pointFillColors: ['#ffffff'], */
     resize: true,
-    redraw: true
-    
+    redraw: true,
+    fillOpacity:'0.5'
   });
   }
 </script>
