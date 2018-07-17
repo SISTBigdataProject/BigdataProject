@@ -1,12 +1,6 @@
 package com.sist.news;
 
 public class MovieRankVO {
-	// 제목
-	// 네티즌 별점
-	// 예매율
-	// 개요
-	// 감독
-	// 출연
 
 	private String title;
 	private String poster;
@@ -15,6 +9,15 @@ public class MovieRankVO {
 	private String summary;
 	private String director;
 	private String actors;
+	private String code;
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public String getTitle() {
 		return title;

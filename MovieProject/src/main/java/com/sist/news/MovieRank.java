@@ -5,8 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class MovieRank {
-
+public class MovieRank{
+	
 	public static List<MovieRankVO> movieRankData()
 	{
 		List<MovieRankVO> list=new ArrayList<MovieRankVO>();
@@ -17,12 +17,30 @@ public class MovieRank {
 		int idx=0;
 		
 		try {
+			/*		   
+			   private String title;
+			   private String genre;
+			   private String director;
+			   private String directorImage;
+			   private String actor;
+			   private String actorImage;
+			   private String grade;
+			   private String regdate;
+			   private String poster;
+			   private String story;
+			   private String country;
+			   private String code;
+			   private String link;
+			   private double eval;
+			   private String photo;
+			*/
 			Document doc=Jsoup.connect(url).get();
 			Elements title=doc.select("div.lst_wrap dt.tit a");
-			Elements poster=doc.select("div.lst_wrap ul li div.thumb img"); // src
+			Elements poster=doc.select("div.lst_wrap ul li div.thumb img");
 			Elements netizen_star=doc.select("dl.info_star span.num");
 			Elements rsvRate=doc.select("dl.info_exp span.num");
 			Elements summary=doc.select("dl.info_txt1 dd");
+			Elements link=doc.select("dt.tit a"); //href
 			
 			for(int i=0; i<12; i++)
 			{
@@ -52,7 +70,8 @@ public class MovieRank {
 				String actors=summary.get(i*3+2).text();
 				if(actors.length()>38)
 					actors=actors.substring(0,38)+"...";
-				vo.setActors(actors); // 출연배우				
+				vo.setActors(actors); // 출연배우			
+				
 				list.add(vo);
 			}
 			

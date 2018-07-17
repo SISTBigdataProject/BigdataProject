@@ -5,6 +5,7 @@ import java.util.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
 public class MovieNews {
 	
 	public static List<MovieNewsVO> coldata(){

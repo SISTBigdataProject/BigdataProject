@@ -1,6 +1,7 @@
 package com.sist.news;
 
 public class MovieNewsVO {
+	
 	private String newstit;
 	private String newsimg;
 	private String cont;

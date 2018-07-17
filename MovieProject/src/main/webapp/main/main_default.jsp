@@ -92,21 +92,17 @@
 		<br>
 
 		<div class="row text-center">
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="../img/cgv.png" href="#" style="width:40%; padding-bottom: 5px;">
 				<p>CGV</p>			
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="../img/메가박스.png" href="#" style="width:40%; padding-bottom: 5px;">	
 				<p>메가박스</p>			
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<img src="../img/롯데시네마.png" href="#" style="width:40%; padding-bottom: 5px;">
 				<p>롯데시네마</p>				
-			</div>
-			<div class="col-sm-3">
-				<img src="../img/왓챠.png" href="#" style="width:40%; padding-bottom: 5px;">
-				<p>왓챠</p>			
 			</div>
 		</div>
 	</div>
@@ -223,7 +219,7 @@
 			<c:if test="${status.index%6 eq '0' }"><div class="row"></c:if>
 			<div class="col-sm-2">
 				<div class="mcard">
-					  <a class="mcard-link" href="#"></a>
+					  <a class="mcard-link" href="movie_detail.do?code=${vo.code }"></a>
 					  <img src="${vo.poster }" alt="Avatar" style="width:100%">
 					  <div class="mcardcontainer">
 					    <span class="badge badge-success">${status.index+1}위</span> 
@@ -238,6 +234,7 @@
 			</c:forEach>
 		</div>
 	</div>
+	
 	
 	<!-- 영화 뉴스 / 칼럼 -->
 	<div id="tour" class="container-fluid bg-1">
@@ -304,7 +301,7 @@
 									<img src="../img/movie_image.jpg" alt="cover" class="cover"/></a>
 									<div class="hero" style="background: url(https://movie-phinf.pstatic.net/20180601_297/15278193380668Anie_JPEG/movie_image.jpg) 0 0 no-repeat;">
 										<div class="details">						
-											<div class="title1">스탠바이, 웬디<span>[국내] 12세 관람가</span>
+											<div class="title1">${vo.title }<span>[국내] 12세 관람가</span>
 											</div>
 											<div class="title2"></div>
 											<fieldset class="rating">
@@ -389,19 +386,29 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	
+	</script>
 
+
+<%-- <td width=25% align="left"><a href="movie_detail.do?code=${vo.code }">${vo.title }</a></td> --%>
+<%-- <a data-toggle="modal" data-target="#myModal" data-id="${vo.code }" style="cursor: pointer;"> --%>
 	<!-- 개봉작 정보 -->
 	<div id="contact" class="container-fluid bg-3 text-center">		
 		<c:forEach var="vo" items="${flist}" begin="0" end="11"	varStatus="status">
 			<c:if test="${status.index%6 eq '0' }"><div class="row no-gutter"></c:if>
 				<div class="col-sm-2">
-					<img src="${vo.poster }" style="width: 100%; height: 510px; object-fit: cover;" alt="Image">
+					<a href="movie_detail.do?code=${vo.code }">
+						<img src="${vo.poster }" style="width: 100%; height: 510px; object-fit: cover;" alt="Image">
+					</a>
 				</div>
 			<c:if test="${status.index%6 eq '5'}"></div></c:if>
 		</c:forEach>
-		</div>
+	</div>
+
 		<script>
 			$(document).ready(function(){
+				
 			  // Initialize Tooltip
 			  $('[data-toggle="tooltip"]').tooltip(); 
 			  
@@ -429,6 +436,10 @@
 			    } // End if
 			  });
 			})
+			
+			function myFunction(elmnt,vo) {
+				elmnt. = clr;
+			}
 		</script>
 
 </body>

@@ -9,7 +9,7 @@ public class GradeMovieVO {
 	private String grmon;// 평점 작성 달
 	private int count;
 	private String score;
-	
+
 	public int getCount() {
 		return count;
 	}
