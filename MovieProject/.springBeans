@@ -7,9 +7,13 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/webapp/WEB-INF/config/application-hadoop.xml</config>
 	</configs>
 	<autoconfigs>
+<<<<<<< HEAD
 		<config>src/main/webapp/WEB-INF/config/application-context.xml</config>
+=======
+>>>>>>> branch 'master' of https://github.com/SISTBigdataProject/BigdataProject.git
 	</autoconfigs>
 	<configSets>
 	</configSets>

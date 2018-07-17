@@ -12,7 +12,7 @@ import java.util.*;
 
 @Repository
 public class MovieDAO {
-	
+
 	@Autowired
 	private MongoTemplate mt;
 
@@ -147,6 +147,7 @@ public class MovieDAO {
 		count = mt.count(query, tablename);
 		return count;
 	}
+	
 	/*
 	 * public List<GradeMovieVO> gradeCount(String code){ List<GradeMovieVO>
 	 * list=new ArrayList<GradeMovieVO>(); double[] grscore=new double[11];
@@ -160,4 +161,5 @@ public class MovieDAO {
 	 * count=list.size(); vo.setScore(String.valueOf(grscore[i]));
 	 * vo.setCount(count); list.add(vo); } return list; }
 	 */
+
 }

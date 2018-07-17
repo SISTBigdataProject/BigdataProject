@@ -45,10 +45,13 @@ svg {
 	<script type="text/javascript">
 		$(document).ready(function() {
 		  areaChart();
+		
 		  $(window).resize(function() {
 		    window.areaChart.redraw();
 		  });
 		});
+		
+		
 		function areaChart() {
 		  window.areaChart = Morris.Area({
 		    element: 'area-chart',

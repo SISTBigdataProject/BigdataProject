@@ -31,9 +31,6 @@ public class MainController {
 	private Configuration conf;
 	@Autowired
 	private JobRunner jr;
-	/*
-	 * @Autowired private MakeFile mk;
-	 */
 
 	@RequestMapping("main/main.do")
 	public String main(Model model) {
@@ -176,8 +173,6 @@ public class MainController {
 		try {
 			jr.call();
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-
 		}
 	}
 
