@@ -106,7 +106,8 @@ public class MainController {
 		model.addAttribute("graph", graph);
 		model.addAttribute("movie_graph", "movie_graph.jsp");
 		///////////////////////////////////////////////////////////////////////// 그래프
-
+		dao.reviewFile(code);
+		rWordCloud();//rwordcloud
 		return "main/main";
 	}
 
@@ -115,7 +116,7 @@ public class MainController {
 
 		// 하둡에 분석 대상 파일 올리기
 		dao.gradeFile(code);
-		dao.reviewFile(code);
+		
 		copyFromLocal();
 		// 하둡에서 분석 실행
 		jobRunner();
@@ -185,5 +186,36 @@ public class MainController {
 			System.out.println(ex.getMessage());
 		}
 	}
+	public void rWordCloud()
+    {
+  	  try
+  	  {
+  		  RConnection rc=new RConnection();
+  		  rc.voidEval("library(KoNLP)");
+  		  rc.voidEval("library(wordcloud2)");
+  		  rc.voidEval("library(webshot)");
+  		  rc.voidEval("library(htmlwidgets)");
+  		  rc.voidEval("data<-readLines(\"/home/sist/MovieData/review.txt\")");
+  		  rc.voidEval("data2<-sapply(data, extractNoun,USE.NAMES = F)");
+  		  rc.voidEval("data3<-unlist(data2)");
+  		  rc.voidEval("data4<-Filter(function(x){nchar(x)>=2},data3)");
+  		  rc.voidEval("data4<-gsub(\"영화\",\"\",data4) ");
+  		  rc.voidEval("data4<-gsub(\"감독\",\"\",data4) ");
+  		  rc.voidEval("data4<-gsub(\"[ㄱ-ㅎ]\",\"\",data4) ");
+  		  rc.voidEval("data4<-gsub(\"[0-9]\",\"\",data4) ");
+  		  rc.voidEval("data4<-gsub(\"(ㅜ|ㅠ)\",\"\",data4) ");
+  		  rc.voidEval("data4<-gsub(\"[!@#$%^&*()_+=?<>]\",\"\",data4) ");
+  		  rc.voidEval("data5<-table(data4)");
+  		  rc.voidEval("data6<-head(sort(data5,decreasing = T),80)");
+  		  rc.voidEval("my_graph<-wordcloud2(data6, size=1.5, color='random-dark')");
+  		  rc.voidEval("saveWidget(my_graph,\"/home/sist/springDev/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MovieProject/main/star.html\",selfcontained = F)");
+  		  //rc.voidEval("dev.off()");
+  		  rc.close();
+  		  
+  	  }catch(Exception ex)
+  	  {
+  		  System.out.println(ex.getMessage());
+  	  }
+    }
 
 }

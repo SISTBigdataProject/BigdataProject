@@ -18,6 +18,7 @@
 				</c:if>
 				</c:forEach>	
 			<h1>word cloud</h1>
+			   <iframe src="star.html" width=800 height=500 frameborder="0"></iframe>
 		</div>
 	</div>
 </body>
