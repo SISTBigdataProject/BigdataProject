@@ -63,7 +63,7 @@ svg {
 		    labels: ['count'],
 		    lineColors: ['#ffaa00'],
 		    lineWidth: '3px',
-		   /*  pointFillColors: ['#ffffff'], */
+		    parseTime: false,
 		    resize: true,
 		    redraw: true,
 		    fillOpacity:'0.5'
