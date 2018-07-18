@@ -61,6 +61,9 @@
 					    </tr> --%>
 					  </tbody>
 					</table>	
+					<c:if test="${countstars>0}">
+						<button type="button" class="btn btn-default btn-lg" onclick="location.href='movie_analysis.do?code=${vo.code }'">word cloud</button>
+					</c:if>
 				</div>
 			</div>
 			<div class="text-center">

@@ -10,15 +10,16 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<h1>#tag</h1>			
+		<div class="row">	
+				
+				<h1>
 				<c:forEach var="vo" items="${rlist}">
 				<c:if test="${vo.count>20}">
 				#${vo.word }&nbsp;
 				</c:if>
-				</c:forEach>	
-			<h1>word cloud</h1>
-			   <iframe src="star.html" width=800 height=500 frameborder="0"></iframe>
+				</c:forEach>					
+				</h1>
+			   <iframe src="star.html" width=1200 height=1000 frameborder="0"></iframe>
 		</div>
 	</div>
 </body>

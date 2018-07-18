@@ -227,7 +227,7 @@ public class MainController {
   		  rc.voidEval("data5<-table(data4)");
   		  rc.voidEval("data6<-head(sort(data5,decreasing = T),80)");
   		  rc.voidEval("my_graph<-wordcloud2(data6, size=1.5, color='random-dark')");
-  		  rc.voidEval("saveWidget(my_graph,\"/home/sist/springDev/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/MovieProject/main/star.html\",selfcontained = F)");
+  		  rc.voidEval("saveWidget(my_graph,\"/home/sist/springDev/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/MovieProject/main/star.html\",selfcontained = F)");
   		  //rc.voidEval("dev.off()");
   		  rc.close();
   		  
