@@ -22,7 +22,7 @@ body {
 /*-=-=-=-=-=-=-=-=-=-=-=- */
 
 .col_half { width: 49%; }
-.col_third { width: 32%; }
+.col_third { width: 32%; }. 
 .col_fourth { width: 23.5%; }
 .col_fifth { width: 18.4%; }
 .col_sixth { width: 15%; }
