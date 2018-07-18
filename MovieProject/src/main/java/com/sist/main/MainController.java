@@ -107,7 +107,7 @@ public class MainController {
 		model.addAttribute("movie_graph", "movie_graph.jsp");
 		///////////////////////////////////////////////////////////////////////// 그래프
 		dao.reviewFile(code);
-		rWordCloud();
+		rWordCloud();//rwordcloud
 		return "main/main";
 	}
 
@@ -138,7 +138,7 @@ public class MainController {
 		model.addAttribute("rlist", rlist);
 		model.addAttribute("movie_jsp", "movie_analysis.jsp");
 		return "main/main";
-}
+	}
 
 	public List<ResultVO> resultData() {
 		List<ResultVO> list = new ArrayList<ResultVO>();

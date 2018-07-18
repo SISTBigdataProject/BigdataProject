@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-sm-9">
 					
-					<h2>${vo.title }
+					<a href="movie_analysis.do?code=${vo.code }"><h2>${vo.title }</a>
 					<c:if test="${countstars>0}">
 						<button type="button" class="btn btn-primary btn-sm">Top 2000</button>
 					</c:if></h2>				
