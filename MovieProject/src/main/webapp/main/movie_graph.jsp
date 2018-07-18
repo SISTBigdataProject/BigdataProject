@@ -72,7 +72,7 @@ svg {
 	</script>
 	<div class="container">
 		<div class="row">
-			<h2>평점 그래프</h2>
+			<h3>평점 그래프</h3>
 			<div id="area-chart"></div>
 		</div>
 	</div>

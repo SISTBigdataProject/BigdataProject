@@ -8,19 +8,10 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <title>영화 연구소</title>
 <style>
-
-body {
-  font-family: Arial;
-  padding: 25px;
-  background-color: #f5f5f5;
-  color: #808080;
-  	text-align: center;	
-}
-
 /*-=-=-=-=-=-=-=-=-=-=-=- */
 /* Column Grids */
 /*-=-=-=-=-=-=-=-=-=-=-=- */
-
+/* 
 .col_half { width: 49%; }
 .col_third { width: 32%; }. 
 .col_fourth { width: 23.5%; }
@@ -40,7 +31,7 @@ body {
 	float: left;
 	margin-right: 2%;
 	margin-bottom: 20px;
-}
+} */
 .end { margin-right: 0 !important; }
 /* Column Grids End */
 

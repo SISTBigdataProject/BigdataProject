@@ -113,8 +113,24 @@ public class MainController {
 		model.addAttribute("graph", graph);
 		model.addAttribute("movie_graph", "movie_graph.jsp");
 		///////////////////////////////////////////////////////////////////////// 그래프
+		
+		///////////////////////////////////////////////////////////////////////// 분석
 		dao.reviewFile(code);
 		rWordCloud();//rwordcloud
+		
+		// 하둡에 분석 대상 파일 올리기
+		dao.gradeFile(code);
+				
+		copyFromLocal();
+		// 하둡에서 분석 실행
+		jobRunner();
+		// 하둡에서 분석결과 읽어 온다 ===> R
+		copyToLocal();
+		List<ResultVO> rlist = resultData();
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("movie_analysis", "movie_analysis.jsp");
+		/////////////////////////////////////////////////////////////////////////
+		
 		return "main/main";
 	}
 
@@ -130,7 +146,7 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@RequestMapping("main/movie_analysis")
+	/*@RequestMapping("main/movie_analysis")
 	public String movieAnalysis(String code, Model model) {
 
 		// 하둡에 분석 대상 파일 올리기
@@ -146,7 +162,7 @@ public class MainController {
 		model.addAttribute("movie_jsp", "movie_analysis.jsp");
 		return "main/main";
 	}
-
+*/
 	public List<ResultVO> resultData() {
 		List<ResultVO> list = new ArrayList<ResultVO>();
 		try {
@@ -226,7 +242,7 @@ public class MainController {
   		  rc.voidEval("data4<-gsub(\"[!@#$%^&*()_+=?<>]\",\"\",data4) ");
   		  rc.voidEval("data5<-table(data4)");
   		  rc.voidEval("data6<-head(sort(data5,decreasing = T),80)");
-  		  rc.voidEval("my_graph<-wordcloud2(data6, size=1.5, color='random-dark')");
+  		  rc.voidEval("my_graph<-wordcloud2(data6, size=2, color='random-dark')");
   		  rc.voidEval("saveWidget(my_graph,\"/home/sist/springDev/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/MovieProject/main/star.html\",selfcontained = F)");
   		  //rc.voidEval("dev.off()");
   		  rc.close();

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,18 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">	
-				
-				<h1>
-				<c:forEach var="vo" items="${rlist}">
-				<c:if test="${vo.count>20}">
-				#${vo.word }&nbsp;
-				</c:if>
-				</c:forEach>					
-				</h1>
-			   <iframe src="star.html" width=1200 height=1000 frameborder="0"></iframe>
+		<div class="row text-center">
+				<br/>	
+				<h3>워드 클라우드</h3>
+				<hr>
+			   <iframe src="star.html" width=100% frameborder="0"></iframe>
 		</div>
-	</div>
 </body>
 </html>

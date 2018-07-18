@@ -19,6 +19,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 </head>
+<body>
 		<div class="hero-image" style="background-image: url(${vo.photo});">
 		  <div class="hero-text">
 		    <h1 style="font-size:50px; text-shadow: 2px 2px #000;">${vo.title}</h1>
@@ -35,7 +36,7 @@
 					<a href="movie_analysis.do?code=${vo.code }"><h2>${vo.title }</a>
 					<c:if test="${countstars>0}">
 						<button type="button" class="btn btn-primary btn-sm">Top 2000</button>
-					</c:if></h2>				
+					</c:if></h2>			
 					 ${vo.regdate}<br/>
 					<table class="table">			
 					  <tbody>
@@ -55,15 +56,19 @@
 					       <th scope="row" width="8%">출연</th>
 					      <td>${vo.actor }</td>
 					    </tr>
-					    <%-- <tr>
-					       <th scope="row" width="8%">줄거리</th>
-					      <td>${vo.story }</td>
-					    </tr> --%>
+					    <tr>
+							<th scope="row" width="8%"></th>
+							<td>
+							<c:forEach var="vo" items="${rlist}">
+							<c:if test="${vo.count>20}">
+									<span class="badge badge-warning">#${vo.word }&nbsp;</span>
+							</c:if>
+							</c:forEach>	
+							
+							</td>
+						</tr>	
 					  </tbody>
 					</table>	
-					<c:if test="${countstars>0}">
-						<button type="button" class="btn btn-default btn-lg" onclick="location.href='movie_analysis.do?code=${vo.code }'">word cloud</button>
-					</c:if>
 				</div>
 			</div>
 			<div class="text-center">
@@ -89,11 +94,12 @@
 						${actornames[status.index]}
 					</div>	
 				</c:forEach>			
-			</div>				
-		</div>
-		
-		<c:if test="${countstars>0}">
-			<jsp:include page="${movie_graph}"></jsp:include>
-		</c:if>
+			</div>
+			
+			<c:if test="${countstars>0}">
+							<jsp:include page="${movie_analysis}"></jsp:include>	
+							<jsp:include page="${movie_graph}"></jsp:include>	
+			</c:if>
+		</div>	
 </body>
 </html>
