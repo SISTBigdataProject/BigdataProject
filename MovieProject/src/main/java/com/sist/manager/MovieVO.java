@@ -1,6 +1,7 @@
 package com.sist.manager;
 
 public class MovieVO {
+	
    private String title;
    private String genre;
    private String director;

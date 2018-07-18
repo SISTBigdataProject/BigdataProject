@@ -67,6 +67,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	
 	<!-- Carousel 자동 플레이 스크립트 -->
 	<script>
 		$('.carousel').carousel({
@@ -218,15 +219,15 @@
 		<c:forEach var="vo" items="${rlist }" begin="0" end="11" varStatus="status">			
 			<c:if test="${status.index%6 eq '0' }"><div class="row"></c:if>
 			<div class="col-sm-2">
-				<div class="mcard">
-					  <a class="mcard-link" href="movie_detail.do?code=${vo.code }"></a>
+				<div class="mcard">					     
+					        <a class="mcard-link" href="movie_rank.do?code=${vo.code }"></a>			  
 					  <img src="${vo.poster }" alt="Avatar" style="width:100%">
 					  <div class="mcardcontainer">
 					    <span class="badge badge-success">${status.index+1}위</span> 
 					    <p id="title"><b>${vo.title }</b> 
-					    <p><b>평점</b> ${vo.netizen_star }<br/>
+					    <p><b>예매율</b> ${vo.rsvRate }%<br/>
 				  		<p><b>감독</b> ${vo.director }<br/>
-				 		<p><b>출연</b> ${vo.actors }<br/></p>
+				 		<p><b>출연</b> ${vo.actor }<br/></p>
 					  </div>
 				</div>
 			</div>
@@ -240,6 +241,8 @@
 	<div id="tour" class="container-fluid bg-1">
 		<div class="container">
 			<div class="row">
+			    } // End if
+			  });
 			<h3 class="text-center">영화 뉴스</h3>
 			<h4 class="text-center">by 맥스무비</h4>
 			</div>
@@ -281,118 +284,6 @@
 		</div>
 	</div>
 	
-	<!-- Modal 영화 디테일! -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog modal-lg">
-			Modal content
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h4>
-						<span class="glyphicon glyphicon-film"></span>영화 상세 정보<span class="glyphicon glyphicon-film"></span>
-					</h4>
-				</div>
-				<div class="modal-body">
-					<div class="mcontainer">
-						<div class="row">
-							<div class="movie-card">
-								<div class="moviecontainer">
-									<a href="#">
-									<img src="../img/movie_image.jpg" alt="cover" class="cover"/></a>
-									<div class="hero" style="background: url(https://movie-phinf.pstatic.net/20180601_297/15278193380668Anie_JPEG/movie_image.jpg) 0 0 no-repeat;">
-										<div class="details">						
-											<div class="title1">${vo.title }<span>[국내] 12세 관람가</span>
-											</div>
-											<div class="title2"></div>
-											<fieldset class="rating">
-												<input type="radio" id="star5" name="rating" value="5" />
-												<label class="full" for="star5" title="최고에요! - 5 stars"></label> 
-												
-												<input type="radio" id="star4half" name="rating" value="4 and a half" />
-												<label class="half" for="star4half" title="훌륭해요 - 4.5 stars"></label>
-												
-												<input type="radio" id="star4" name="rating" value="4" checked />
-												<label class="full" for="star4" title="재미있어요 - 4 stars"></label>
-												
-												<input type="radio" id="star3half" name="rating" value="3 and a half" />
-												<label class="half" for="star3half" title="볼만해요 - 3.5 stars"></label> 
-												
-												<input type="radio" id="star3" name="rating" value="3" />
-												<label class="full" for="star3" title="보통이에요 - 3 stars"></label> 
-												
-												<input type="radio" id="star2half" name="rating" value="2 and a half" />
-												<label class="half" for="star2half" title="부족해요 - 2.5 stars"></label>
-												
-												<input type="radio" id="star2" name="rating" value="2" />
-												<label class="full" for="star2" title="별로에요 - 2 stars"></label> 
-												
-												<input type="radio" id="star1half" name="rating" value="1 and a half" />
-												<label class="half" for="star1half" title="재미없어요 - 1.5 stars"></label> 
-												
-												<input type="radio" id="star1" name="rating" value="1" />
-												<label class="full" for="star1" title="싫어요 - 1 star"></label>
-												
-												<input type="radio" id="starhalf" name="rating" value="half" />
-												<label class="half" for="starhalf" title="최악이에요! - 0.5 stars"></label>
-											</fieldset>
-										</div>
-									</div>
-									<div class="description">
-										<div class="column1">
-											<span class="tag">액션</span> 
-											<span class="tag">모험</span>
-											<span class="tag">SF</span>
-										</div>
-										<div class="column2">
-											<p>
-												<em>우리처럼 똑같은 일상을 반복하는 웬디.</em>									
-													아침에 샤워를 하고 아침 먹고 아르바이트를 하고 동료들과 휴식시간을 갖고
-													집에 와서 TV를 보고 저녁 먹고 글을 쓰다가 자는 일상.
-													그런 웬디가 일탈을 한다!? 웬디 왜 그러는거야!
-													나에겐 목표와 꿈이 있으니까요!
-													스타 트렉 시나리오 공모전에 꼭 참가해야 해요
-													웬디의 일탈 시작!
-													나아갈 때 비로소 다가오는 것들이 있다!
-													웬디가 처음 접하는 모든 것들!
-													웬디를 따라 LA여행 모두 함께 해보실래요
-													여러분들 웬디의 일탈로 들어오세요~♥ 행복한 소확행을 맛보게 될거예요
-											</p>
-											<div class="avatars">
-												<a href="#" data-tooltip="크리스 프랫" data-placement="top"> 
-													<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar1.png" alt="avatar1" />
-												</a> 
-												<a href="#" data-tooltip="브라이스 달라스 하워스" data-placement="top"> 
-													<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar2.png" alt="avatar2" />
-												</a> 
-												<a href="#" data-tooltip="제프 골드브럼" data-placement="top"> 
-													<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar3.png" alt="avatar3" />
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove"></span> Cancel
-					</button>
-					<p>
-						Need <a href="#">help?</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-	
-	</script>
-
-
-<%-- <td width=25% align="left"><a href="movie_detail.do?code=${vo.code }">${vo.title }</a></td> --%>
-<%-- <a data-toggle="modal" data-target="#myModal" data-id="${vo.code }" style="cursor: pointer;"> --%>
 	<!-- 개봉작 정보 -->
 	<div id="contact" class="container-fluid bg-3 text-center">		
 		<c:forEach var="vo" items="${flist}" begin="0" end="11"	varStatus="status">
@@ -438,7 +329,7 @@
 			})
 			
 			function myFunction(elmnt,vo) {
-				elmnt. = clr;
+				elmnt = clr;
 			}
 		</script>
 

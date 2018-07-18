@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sist.news.MovieRankVO;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
@@ -28,15 +30,14 @@ public class MovieDAO {
 		mt.insert(vo, "moviedetail");
 	}
 
-	/*
-	 * public void MovieRankInsert(MovieVO vo){ mt.insert(vo, "moviedetail"); }
-	 */
+	public void MovieRankInsert(MovieRankVO vo) {
+		mt.insert(vo, "movierankdetail");
+	}
 
 	public List<MovieVO> mainMovieList() {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		Query query = new Query();
 		list = mt.find(query, MovieVO.class, "moviedetail");
-
 		for (int j = 0; j < list.size(); j++) {
 			String s = list.get(j).getPoster();
 			int i = s.indexOf("?");
@@ -46,6 +47,23 @@ public class MovieDAO {
 			}
 		}
 		return list;
+	}
+
+	// 박스오피스 - 메인
+	public List<MovieRankVO> movieRankList() {
+		List<MovieRankVO> list = new ArrayList<MovieRankVO>();
+		Query query = new Query();
+		list = mt.find(query, MovieRankVO.class, "movierankdetail");
+		return list;
+	}
+
+	// 박스오피스 - 디테일
+	public MovieRankVO getMovieRankDetailData(String code) {
+		MovieRankVO vo = new MovieRankVO();
+		BasicQuery query = new BasicQuery("{code:'" + code + "'}");
+		vo = mt.findOne(query, MovieRankVO.class, "movierankdetail");
+
+		return vo;
 	}
 
 	public List<String> movieGetGenre() {
@@ -147,7 +165,7 @@ public class MovieDAO {
 		count = mt.count(query, tablename);
 		return count;
 	}
-	
+
 	/*
 	 * public List<GradeMovieVO> gradeCount(String code){ List<GradeMovieVO>
 	 * list=new ArrayList<GradeMovieVO>(); double[] grscore=new double[11];

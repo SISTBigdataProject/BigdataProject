@@ -21,6 +21,7 @@ public class MovieDetail extends Thread {
 		int i = 0;
 		try {
 			Document doc = Jsoup.connect(link).get();
+			
 			Element title = doc.select("div.mv_info h3.h_movie a").get(0);
 			Elements genre = doc.select("p.info_spec span a[href*=genre]");
 			Element country = doc.select("p.info_spec span").get(1);

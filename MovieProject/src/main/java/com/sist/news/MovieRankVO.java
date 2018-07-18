@@ -3,21 +3,21 @@ package com.sist.news;
 public class MovieRankVO {
 
 	private String title;
-	private String poster;
-	private String netizen_star;
-	private String rsvRate;
-	private String summary;
+	private String genre;
 	private String director;
-	private String actors;
+	private String directorImage;
+	private String actor;
+	private String actorImage;
+	private String grade;
+	private String regdate;
+	private String poster;
+	private String story;
+	private String country;
 	private String code;
-	
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
+	private double eval;
+	private String photo;
+	private String rsvRate;
+	private String rsvLink;
 
 	public String getTitle() {
 		return title;
@@ -27,36 +27,12 @@ public class MovieRankVO {
 		this.title = title;
 	}
 
-	public String getPoster() {
-		return poster;
+	public String getGenre() {
+		return genre;
 	}
 
-	public void setPoster(String poster) {
-		this.poster = poster;
-	}
-
-	public String getNetizen_star() {
-		return netizen_star;
-	}
-
-	public void setNetizen_star(String netizen_star) {
-		this.netizen_star = netizen_star;
-	}
-
-	public String getRsvRate() {
-		return rsvRate;
-	}
-
-	public void setRsvRate(String rsvRate) {
-		this.rsvRate = rsvRate;
-	}
-
-	public String getSummary() {
-		return summary;
-	}
-
-	public void setSummary(String summary) {
-		this.summary = summary;
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	public String getDirector() {
@@ -67,12 +43,107 @@ public class MovieRankVO {
 		this.director = director;
 	}
 
-	public String getActors() {
-		return actors;
+	public String getDirectorImage() {
+		return directorImage;
 	}
 
-	public void setActors(String actors) {
-		this.actors = actors;
+	public void setDirectorImage(String directorImage) {
+		this.directorImage = directorImage;
 	}
 
+	public String getActor() {
+		return actor;
+	}
+
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+
+	public String getActorImage() {
+		return actorImage;
+	}
+
+	public void setActorImage(String actorImage) {
+		this.actorImage = actorImage;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
+	public String getStory() {
+		return story;
+	}
+
+	public void setStory(String story) {
+		this.story = story;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public double getEval() {
+		return eval;
+	}
+
+	public void setEval(double eval) {
+		this.eval = eval;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public String getRsvRate() {
+		return rsvRate;
+	}
+
+	public void setRsvRate(String rsvRate) {
+		this.rsvRate = rsvRate;
+	}
+
+	public String getRsvLink() {
+		return rsvLink;
+	}
+
+	public void setRsvLink(String rsvLink) {
+		this.rsvLink = rsvLink;
+	}
 }

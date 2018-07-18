@@ -22,7 +22,8 @@
 		<div class="hero-image" style="background-image: url(${vo.photo});">
 		  <div class="hero-text">
 		    <h1 style="font-size:50px; text-shadow: 2px 2px #000;">${vo.title}</h1>
-		    <button type="button" class="btn btn-outline-primary">평점 ${vo.eval }</button>
+		    <p>평점: ${vo.eval } | 예매율: ${vo.rsvRate }%</p>
+		
 		  </div>
 		</div>
 	<div class="container">
@@ -32,11 +33,9 @@
 				</div>
 				<div class="col-sm-9">
 					
-					<h2>${vo.title }
-					<c:if test="${countstars>0}">
-						<button type="button" class="btn btn-primary btn-sm">Top 2000</button>
-					</c:if></h2>				
+					<h2>${vo.title }     <a class="btn btn-success" href="${vo.rsvLink }" role="button" target="_blank">예매하기</a> </h2>				
 					 ${vo.regdate}<br/>
+					
 					<table class="table">			
 					  <tbody>
 					  	<tr>
@@ -74,7 +73,7 @@
 				<hr>
 				<div class="col-sm-2">
 					<img src="${vo.directorImage}"><br/><br/>
-					${vo.director }
+					${vo.director }<br/>(감독)
 				</div>
 				
 				<c:set var="actorImages" value="${fn:split(vo.actorImage,',')}" />
@@ -88,9 +87,5 @@
 				</c:forEach>			
 			</div>				
 		</div>
-		
-		<c:if test="${countstars>0}">
-			<jsp:include page="${movie_graph}"></jsp:include>
-		</c:if>
 </body>
 </html>

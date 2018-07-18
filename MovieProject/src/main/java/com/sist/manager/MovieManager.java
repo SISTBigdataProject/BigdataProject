@@ -2,15 +2,16 @@ package com.sist.manager;
 
 import java.util.*;
 
-import org.apache.spark.sql.catalyst.expressions.Length;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+
+import com.sist.news.MovieRank;
+import com.sist.news.MovieRankVO;
 
 @Component
 public class MovieManager {
@@ -18,10 +19,25 @@ public class MovieManager {
 	private MovieDAO dao;
 
 	public static void main(String[] args) {
-		ApplicationContext app = new ClassPathXmlApplicationContext("application-*.xml");
+		
+		@SuppressWarnings("resource")
+		ApplicationContext app = new ClassPathXmlApplicationContext("application-context.xml");
 		MovieManager mm = (MovieManager) app.getBean("movieManager");
+		MovieRank mr=new MovieRank();
+		List<MovieRankVO> ranklist=new ArrayList<MovieRankVO>();
+		ranklist=mr.movieRankData();	
+		
+		for(MovieRankVO vo:ranklist)
+		{
+			mm.dao.MovieRankInsert(vo);
+		}	
+		System.out.println("끝");
 
-		Map map = mm.link();
+		
+		
+		
+		/////////////////////////
+		/*Map map = mm.link();
 		Set<String> set = map.keySet();
 		Iterator<String> iterator = set.iterator();
 
@@ -37,7 +53,13 @@ public class MovieManager {
 			clist[i] = code;
 			tlist[i] = title;
 			i++;
-		}
+		}*/
+		///////////////////////
+		
+		
+		
+		
+		
 
 		/*
 		 * for(int a=0;a<map.size();a++) {
@@ -58,7 +80,9 @@ public class MovieManager {
 		 * println("==========================GradeMovie end=========================="
 		 * );
 		 */
-		ReviewMovie[] rlist = new ReviewMovie[map.size()];
+		
+		///////////////////////
+		/*ReviewMovie[] rlist = new ReviewMovie[map.size()];
 		for (int k = 0; k < map.size(); k++) {
 			rlist[k] = new ReviewMovie(clist[k], tlist[k]);
 			rlist[k].start();
@@ -68,6 +92,9 @@ public class MovieManager {
 						;
 				}
 			}
+			*/
+			
+			///////////////////////
 			/*
 			 * try { rlist[k].join(); System.out.println(k+" 쓰레드 종료");
 			 * for(ReviewMovieVO rvo:rlist[k].rvlist){
@@ -76,7 +103,7 @@ public class MovieManager {
 			 */
 		}
 
-		System.out.println("==========================ReviewMovie end==========================");
+		//System.out.println("==========================ReviewMovie end==========================");
 
 		/*
 		 * ArrayList<MovieVO> links=mm.naverYearLinkData(); int k=links.size();
@@ -90,7 +117,6 @@ public class MovieManager {
 		 * 
 		 * }
 		 */
-	}
 
 	// 링크(코드, 영화 제목)
 	public Map<String, String> link() {
