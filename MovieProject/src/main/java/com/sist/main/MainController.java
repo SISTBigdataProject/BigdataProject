@@ -38,6 +38,13 @@ public class MainController {
 		List<MovieNewsVO> nlist = MovieNews.newsdata();
 		List<MovieVO> flist = dao.mainMovieList();
 		List<MovieRankVO> rlist = dao.movieRankList();
+		long mdcount=dao.totalCount("moviedetail");
+		long mgcount=dao.totalCount("moviegrade");
+		long mrcount=dao.totalCount("moviereview");
+		model.addAttribute("mdcount",mdcount);
+		model.addAttribute("mgcount",mgcount);
+		model.addAttribute("mrcount", mrcount);
+		
 		model.addAttribute("clist", clist);
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("flist", flist);

@@ -34,12 +34,3 @@
 <!--    <hadoop:job-runner job-ref="MovieGradeJob" run-at-startup="false"/> -->
 </beans>
 
-
-
-
-
-
-
-
-
-
