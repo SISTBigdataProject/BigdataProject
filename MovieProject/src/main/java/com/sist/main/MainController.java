@@ -37,7 +37,7 @@ public class MainController {
 		List<MovieNewsVO> clist = MovieNews.coldata();
 		List<MovieNewsVO> nlist = MovieNews.newsdata();
 		List<MovieVO> flist = dao.mainMovieList();
-		List<MovieRankVO> rlist = MovieRank.movieRankData();
+		List<MovieRankVO> rlist = dao.movieRankList();
 		model.addAttribute("clist", clist);
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("flist", flist);
@@ -111,6 +111,18 @@ public class MainController {
 		return "main/main";
 	}
 
+	@RequestMapping("main/movie_rank.do")
+	public String movieRankDetail(String code, Model model) {
+		System.out.println(code);
+		MovieRankVO vo = dao.getMovieRankDetailData(code);
+		System.out.println(vo.getTitle());
+
+		model.addAttribute("vo", vo);
+		model.addAttribute("movie_jsp", "movie_rank.jsp");
+
+		return "main/main";
+	}
+	
 	@RequestMapping("main/movie_analysis")
 	public String movieAnalysis(String code, Model model) {
 
